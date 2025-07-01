@@ -1,0 +1,85 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Axiforma Black Italic.otf",
+      "sha1": "12b440f55814c7039c614b647a80fc7dd1d77d77"
+    },
+    {
+      "path": "assets/fonts/Axiforma Black.otf",
+      "sha1": "5efaead33feae7db6b02205fed48613755af479f"
+    },
+    {
+      "path": "assets/fonts/Axiforma Bold Italic.otf",
+      "sha1": "0aed83c0bb67e39be599a2a1c38c19d3bc909388"
+    },
+    {
+      "path": "assets/fonts/Axiforma Bold.otf",
+      "sha1": "4b8f3577010241bee9565e468cf66c53dd8a65ef"
+    },
+    {
+      "path": "assets/fonts/Axiforma Book Italic.otf",
+      "sha1": "66ab53d79cfe0f994e8b6ce4afe0014c8158c19c"
+    },
+    {
+      "path": "assets/fonts/Axiforma Book.otf",
+      "sha1": "573d3e05318224d47dc8e613cca48e1add7dc71e"
+    },
+    {
+      "path": "assets/fonts/Axiforma ExtraBold Italic.otf",
+      "sha1": "4cd074744014f420be71147c8b5ed1632bfaf65e"
+    },
+    {
+      "path": "assets/fonts/Axiforma ExtraBold.otf",
+      "sha1": "d55be13998740584e645a738484c5a2a1f794e4f"
+    },
+    {
+      "path": "assets/fonts/Axiforma Heavy Italic.otf",
+      "sha1": "ede06329d349ae52c5b319984c52e9ac52e7b323"
+    },
+    {
+      "path": "assets/fonts/Axiforma Heavy.otf",
+      "sha1": "b99e79c0374722bdcbc7beb329e2e2f9d2f7a166"
+    },
+    {
+      "path": "assets/fonts/Axiforma Italic.otf",
+      "sha1": "a429dbf79bb8cc9af60dddb663fcf882687e8915"
+    },
+    {
+      "path": "assets/fonts/Axiforma Light Italic.otf",
+      "sha1": "b1a2b1ae3e80a7255694025b6448ce70f669b0bc"
+    },
+    {
+      "path": "assets/fonts/Axiforma Light.otf",
+      "sha1": "4304f4349af45e14d7dad76e1a13fb9cf747d2c5"
+    },
+    {
+      "path": "assets/fonts/Axiforma Medium Italic.otf",
+      "sha1": "c6d0ca3cb26963534b0b3d8054de4fd2d21964d8"
+    },
+    {
+      "path": "assets/fonts/Axiforma Medium.otf",
+      "sha1": "639a5333f1532e1e90dd6196bcd47c4fc57f6fe4"
+    },
+    {
+      "path": "assets/fonts/Axiforma Regular.otf",
+      "sha1": "b8fe368b1ff79d68217cef3009d472cf8839281c"
+    },
+    {
+      "path": "assets/fonts/Axiforma SemiBold Italic.otf",
+      "sha1": "c06d9f15d870de4132701b80b2b1d47986b6042f"
+    },
+    {
+      "path": "assets/fonts/Axiforma SemiBold.otf",
+      "sha1": "8c97614cd87a09fc15b757d6031898aed5aa3557"
+    },
+    {
+      "path": "assets/fonts/Axiforma Thin Italic.otf",
+      "sha1": "30fe0a116dde219843970cb72ef5b2a0496c6179"
+    },
+    {
+      "path": "assets/fonts/Axiforma Thin.otf",
+      "sha1": "45ecf590612c47bd7206e79013588a406cf668ae"
+    }
+  ]
+}
