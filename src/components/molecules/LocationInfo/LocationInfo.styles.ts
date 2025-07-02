@@ -12,10 +12,7 @@ export const styles = StyleSheet.create({
   routeInfo: {
     flex: 1,
   },
-
   routeLabel: {
-    ...typography.caption,
-    color: colors.text.secondary,
     fontWeight: fonts.weight.medium,
     marginRight: spacing.sm,
     marginLeft: spacing.sm,
@@ -24,8 +21,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   routeAddress: {
-    ...typography.caption,
-    color: colors.text.primary,
     fontWeight: fonts.weight.medium,
     flex: 1,
   },

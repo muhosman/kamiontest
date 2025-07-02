@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing } from '../../../theme';
+import { colors, fonts, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   badge: {
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
   },
   badgeText: {
     fontSize: 12,
-    fontWeight: '500',
+    fontWeight: fonts.weight.medium,
     textAlign: 'center',
   },
   // Variants

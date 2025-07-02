@@ -19,7 +19,6 @@ export type {
   IconSizeKeys,
 } from './dimensions';
 
-// Theme object that combines all theme values
 export const theme = {
   colors,
   fonts,

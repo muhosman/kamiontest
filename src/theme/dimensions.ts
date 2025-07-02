@@ -3,13 +3,11 @@ import { Dimensions } from 'react-native';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export const dimensions = {
-  // Screen dimensions
   screen: {
     width: screenWidth,
     height: screenHeight,
   },
 
-  // Component heights
   header: 56,
   tabBar: 60,
   button: {
@@ -25,7 +23,6 @@ export const dimensions = {
     large: 160,
   },
 
-  // Border radius
   borderRadius: {
     none: 0,
     sm: 4,
@@ -36,7 +33,6 @@ export const dimensions = {
     full: 9999,
   },
 
-  // Icon sizes
   icon: {
     xs: 12,
     sm: 16,
@@ -46,7 +42,6 @@ export const dimensions = {
     '2xl': 40,
   },
 
-  // Border widths
   borderWidth: {
     none: 0,
     thin: 0.5,
@@ -55,7 +50,6 @@ export const dimensions = {
     thicker: 4,
   },
 
-  // Shadow depths
   shadow: {
     none: 0,
     sm: 2,

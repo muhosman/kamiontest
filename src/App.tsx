@@ -5,7 +5,6 @@ import { LogBox } from 'react-native';
 import { store } from './store';
 import { RootNavigator } from './navigation';
 
-// LogBox'ı tamamen kapat
 LogBox.ignoreAllLogs();
 
 const App: React.FC = () => {

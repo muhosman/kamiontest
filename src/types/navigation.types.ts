@@ -2,19 +2,16 @@ import type { RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { Shipment } from './shipment.types';
 
-// Root Stack Navigator
 export type RootStackParamList = {
   Splash: undefined;
   Auth: undefined;
   Main: undefined;
 };
 
-// Auth Stack Navigator
 export type AuthStackParamList = {
   Login: undefined;
 };
 
-// Main Stack Navigator
 export type MainStackParamList = {
   ShipmentList: undefined;
   ShipmentDetail: {
@@ -22,7 +19,6 @@ export type MainStackParamList = {
   };
 };
 
-// Navigation Props Types
 export type RootStackNavigationProp<T extends keyof RootStackParamList> =
   StackNavigationProp<RootStackParamList, T>;
 
@@ -32,7 +28,6 @@ export type AuthStackNavigationProp<T extends keyof AuthStackParamList> =
 export type MainStackNavigationProp<T extends keyof MainStackParamList> =
   StackNavigationProp<MainStackParamList, T>;
 
-// Route Props Types
 export type RootStackRouteProp<T extends keyof RootStackParamList> = RouteProp<
   RootStackParamList,
   T
@@ -48,7 +43,6 @@ export type MainStackRouteProp<T extends keyof MainStackParamList> = RouteProp<
   T
 >;
 
-// Combined Props for Screens
 export interface SplashScreenProps {
   navigation: RootStackNavigationProp<'Splash'>;
   route: RootStackRouteProp<'Splash'>;
@@ -69,14 +63,12 @@ export interface ShipmentDetailScreenProps {
   route: MainStackRouteProp<'ShipmentDetail'>;
 }
 
-// Navigation State
 export interface NavigationState {
   currentRoute?: string;
   previousRoute?: string;
   params?: Record<string, any>;
 }
 
-// Screen Options
 export interface ScreenOptions {
   title?: string;
   headerShown?: boolean;

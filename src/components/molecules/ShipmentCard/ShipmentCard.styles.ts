@@ -20,8 +20,6 @@ export const styles = StyleSheet.create({
     marginBottom: spacing.lg,
   },
   shipmentNumber: {
-    fontSize: fonts.size.sm,
-    color: colors.text.primary,
     fontWeight: fonts.weight.bold,
   },
   headerRight: {
@@ -47,19 +45,13 @@ export const styles = StyleSheet.create({
     borderRadius: dimensions.borderRadius['2xl'],
   },
   dateText: {
-    fontSize: fonts.size.xs,
-    color: colors.third[700],
     fontWeight: fonts.weight.bold,
     marginRight: spacing.xs,
   },
   priceText: {
-    fontSize: fonts.size.xs,
-    color: colors.primary[900],
     fontWeight: fonts.weight.bold,
   },
   priceTextWithCurrency: {
-    fontSize: fonts.size.xs,
-    color: colors.primary[900],
     fontWeight: fonts.weight.medium,
   },
 });

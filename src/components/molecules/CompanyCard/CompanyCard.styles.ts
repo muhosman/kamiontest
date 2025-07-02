@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, dimensions, spacing, typography } from '../../../theme';
+import { colors, dimensions, fonts, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -19,9 +19,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   companyName: {
-    ...typography.body1,
-    color: colors.neutral[800],
     flex: 1,
-    fontWeight: '400',
+    fontWeight: fonts.weight.normal,
   },
 });

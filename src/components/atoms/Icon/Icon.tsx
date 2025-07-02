@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { colors } from '../../../theme';
+import React, { useMemo } from 'react';
+import { View, Text, Image, TouchableOpacity, ImageStyle } from 'react-native';
+import { colors, fonts } from '../../../theme';
 import type { IconProps } from './Icon.types';
 
 const iconMap = {
@@ -17,105 +17,99 @@ const iconMap = {
   warning: require('../../../../assets/images/icons/warning.png'),
 };
 
-export const Icon: React.FC<IconProps> = ({
-  name,
-  size = 24,
-  color = colors.text.primary,
-  style,
-  onPress,
-}) => {
-  const renderIcon = () => {
-    // PNG icon'ları için
-    if (name in iconMap) {
+export const Icon: React.FC<IconProps> = React.memo(
+  ({ name, size = 24, color = colors.text.primary, style, onPress }) => {
+    const renderIcon = useMemo(() => {
+      if (name in iconMap) {
+        return (
+          <Image
+            source={iconMap[name as keyof typeof iconMap]}
+            style={[
+              {
+                width: size,
+                height: size,
+                tintColor: color,
+              },
+              style as ImageStyle,
+            ]}
+            resizeMode="contain"
+          />
+        );
+      }
+
+      switch (name) {
+        case 'back':
+          return (
+            <Text
+              style={[
+                {
+                  fontSize: size,
+                  color,
+                  fontWeight: fonts.weight.bold,
+                },
+                style,
+              ]}
+            >
+              ←
+            </Text>
+          );
+        case 'search':
+          return (
+            <Text
+              style={[
+                {
+                  fontSize: size,
+                  color,
+                },
+                style,
+              ]}
+            >
+              🔍
+            </Text>
+          );
+        case 'departure':
+          return (
+            <View
+              style={[
+                {
+                  width: size,
+                  height: size,
+                  borderRadius: size / 2,
+                  backgroundColor: color || colors.primary[500],
+                },
+                style,
+              ]}
+            />
+          );
+        case 'arrival':
+          return (
+            <View
+              style={[
+                {
+                  width: size,
+                  height: size,
+                  borderRadius: size / 2,
+                  backgroundColor: 'transparent',
+                  borderWidth: 2,
+                  borderColor: color || colors.primary[500],
+                },
+                style,
+              ]}
+            />
+          );
+        default:
+          return null;
+      }
+    }, [name, size, color, style]);
+
+    if (onPress) {
       return (
-        <Image
-          source={iconMap[name as keyof typeof iconMap]}
-          style={[
-            {
-              width: size,
-              height: size,
-              tintColor: color,
-            },
-            style,
-          ]}
-          resizeMode="contain"
-        />
+        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+          {renderIcon}
+        </TouchableOpacity>
       );
     }
 
-    // Text-based icon'lar için
-    switch (name) {
-      case 'back':
-        return (
-          <Text
-            style={[
-              {
-                fontSize: size,
-                color,
-                fontWeight: 'bold',
-              },
-              style,
-            ]}
-          >
-            ←
-          </Text>
-        );
-      case 'search':
-        return (
-          <Text
-            style={[
-              {
-                fontSize: size,
-                color,
-              },
-              style,
-            ]}
-          >
-            🔍
-          </Text>
-        );
-      case 'departure':
-        return (
-          <View
-            style={[
-              {
-                width: size,
-                height: size,
-                borderRadius: size / 2,
-                backgroundColor: color || colors.primary[500],
-              },
-              style,
-            ]}
-          />
-        );
-      case 'arrival':
-        return (
-          <View
-            style={[
-              {
-                width: size,
-                height: size,
-                borderRadius: size / 2,
-                backgroundColor: 'transparent',
-                borderWidth: 2,
-                borderColor: color || colors.primary[500],
-              },
-              style,
-            ]}
-          />
-        );
-      default:
-        return null;
-    }
-  };
-
-  if (onPress) {
-    return (
-      <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
-        {renderIcon()}
-      </TouchableOpacity>
-    );
-  }
-
-  return <View>{renderIcon()}</View>;
-};
+    return <View>{renderIcon}</View>;
+  },
+);

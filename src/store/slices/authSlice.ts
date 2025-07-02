@@ -3,7 +3,6 @@ import { authApi } from '../../services/api';
 import { storageService } from '../../services/storage/AsyncStorage';
 import type { AuthState, LoginFormData, User } from '../../types';
 
-// Initial state
 const initialState: AuthState = {
   user: null,
   token: null,
@@ -12,7 +11,6 @@ const initialState: AuthState = {
   error: null,
 };
 
-// Async thunks
 export const loginAsync = createAsyncThunk(
   'auth/login',
   async (credentials: LoginFormData, { rejectWithValue }) => {
@@ -20,23 +18,15 @@ export const loginAsync = createAsyncThunk(
       console.log('Login credentials:', credentials);
       const response = await authApi.login(credentials);
 
-      // Debug: API response'unu logla
       console.log('Login API Response:', response);
 
       if (response.success && response.data) {
-        // Store token
         if (response.data.token) {
           await storageService.setAuthToken(response.data.token);
         }
 
-        // Store user data only if it exists
         if (response.data.user) {
           await storageService.setUserData(response.data.user);
-        }
-
-        // Store refresh token if exists
-        if (response.data.refreshToken) {
-          await storageService.setRefreshToken(response.data.refreshToken);
         }
 
         return response.data;
@@ -56,15 +46,12 @@ export const logoutAsync = createAsyncThunk(
   'auth/logout',
   async (_, { rejectWithValue }) => {
     try {
-      // Try to call logout API
       try {
         await authApi.logout();
       } catch (error) {
-        // Continue with logout even if API call fails
         console.warn('Logout API call failed:', error);
       }
 
-      // Clear local storage
       await storageService.clearAuthData();
 
       return;
@@ -89,7 +76,6 @@ export const checkAuthAsync = createAsyncThunk(
           user: userData,
         };
       } else {
-        // Clear any partial data
         await storageService.clearAuthData();
         return rejectWithValue('Oturum bulunamadı');
       }
@@ -101,7 +87,6 @@ export const checkAuthAsync = createAsyncThunk(
   },
 );
 
-// Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -118,19 +103,16 @@ const authSlice = createSlice({
       }
     },
     logout: state => {
-      // Basit logout - sadece state'i temizle
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
       state.error = null;
       state.isLoading = false;
 
-      // Storage'ı da temizle (async olmadan)
       storageService.clearAuthData().catch(console.error);
     },
   },
   extraReducers: builder => {
-    // Login
     builder
       .addCase(loginAsync.pending, state => {
         state.isLoading = true;
@@ -151,7 +133,6 @@ const authSlice = createSlice({
         state.error = action.payload as string;
       });
 
-    // Logout
     builder
       .addCase(logoutAsync.pending, state => {
         state.isLoading = true;
@@ -166,14 +147,12 @@ const authSlice = createSlice({
       })
       .addCase(logoutAsync.rejected, (state, action) => {
         state.isLoading = false;
-        // Still clear auth state even if logout failed
         state.isAuthenticated = false;
         state.user = null;
         state.token = null;
         state.error = action.payload as string;
       });
 
-    // Check auth
     builder
       .addCase(checkAuthAsync.pending, state => {
         state.isLoading = true;
@@ -191,13 +170,11 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
         state.user = null;
         state.token = null;
-        state.error = null; // Don't show error for auth check failures
+        state.error = null;
       });
   },
 });
 
-// Export actions
 export const { clearError, setUser, updateUser, logout } = authSlice.actions;
 
-// Export reducer
 export default authSlice.reducer;

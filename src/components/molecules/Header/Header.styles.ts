@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, typography } from '../../../theme';
+import { colors, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,10 +21,7 @@ export const styles = StyleSheet.create({
     marginRight: spacing.lg,
   },
   title: {
-    ...typography.h5,
-    color: colors.text.primary,
     flex: 1,
-    textAlign: 'center',
   },
   spacer: {
     width: 56, // Back button + margin width

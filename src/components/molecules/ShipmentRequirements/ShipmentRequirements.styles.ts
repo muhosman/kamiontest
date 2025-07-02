@@ -1,13 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, typography } from '../../../theme';
+import { colors, fonts, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {},
   title: {
-    ...typography.body1,
-    color: colors.text.primary,
     marginBottom: spacing.md,
-    fontWeight: '600',
+    fontWeight: fonts.weight.semibold,
   },
   row: {
     flexDirection: 'row',
@@ -21,16 +19,12 @@ export const styles = StyleSheet.create({
     paddingLeft: spacing.lg,
   },
   label: {
-    ...typography.caption,
-    color: colors.text.secondary,
     marginBottom: spacing.xs,
-    fontWeight: '500',
+    fontWeight: fonts.weight.medium,
     letterSpacing: 0.5,
   },
   value: {
-    ...typography.body2,
-    color: colors.text.primary,
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
   },
   fullWidthRow: {
     marginBottom: spacing.md,
@@ -44,9 +38,7 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   statusText: {
-    ...typography.body2,
-    color: colors.success[700],
-    fontWeight: '600',
+    fontWeight: fonts.weight.semibold,
     textAlign: 'center',
   },
 });

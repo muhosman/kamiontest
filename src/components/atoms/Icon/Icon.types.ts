@@ -7,6 +7,12 @@ export interface IconProps {
     | 'mail'
     | 'lock'
     | 'unlock'
+    | 'user'
+    | 'wallet'
+    | 'distance'
+    | 'box'
+    | 'close'
+    | 'warning'
     | 'departure'
     | 'arrival';
   size?: number;

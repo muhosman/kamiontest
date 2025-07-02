@@ -29,13 +29,10 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
   const [isSearching, setIsSearching] = useState(false);
   const [searchLoading, setSearchLoading] = useState(false);
 
-  // 500ms debounce - sadece bu kullanılacak
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
-  // Arama isteklerini iptal etmek için dispatch promise ref'i
   const searchRequestRef = useRef<any>(null);
 
-  // Component unmount cleanup
   useEffect(() => {
     return () => {
       if (searchRequestRef.current) {
@@ -44,7 +41,6 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     };
   }, []);
 
-  // İlk yüklemede sevkiyatları getir
   useEffect(() => {
     dispatch(fetchShipmentsAsync() as any);
   }, [dispatch]);
@@ -55,9 +51,7 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     }
   }, [isLoading]);
 
-  // Sadece debounced search - tek API çağrısı
   useEffect(() => {
-    // Önceki arama isteğini iptal et
     if (searchRequestRef.current) {
       searchRequestRef.current.abort();
       searchRequestRef.current = null;
@@ -66,25 +60,21 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     if (debouncedSearchQuery.trim() && isSearching) {
       setSearchLoading(true);
 
-      // Yeni search request'i başlat
       searchRequestRef.current = dispatch(
         searchShipmentsAsync(debouncedSearchQuery.trim()) as any,
       );
 
       searchRequestRef.current.finally(() => {
-        // İstek tamamlandığında loading'i kapat ve ref'i temizle
         searchRequestRef.current = null;
         setSearchLoading(false);
       });
     } else if (!isSearching) {
-      // Arama temizlendiğinde tüm listeyi yeniden getir
       setIsSearching(false);
       setSearchLoading(false);
       dispatch(fetchShipmentsAsync() as any);
     }
   }, [debouncedSearchQuery, dispatch, isSearching]);
 
-  // 🚀 PERFORMANCE: Memoized handler functions
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
     try {
@@ -115,10 +105,8 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     dispatch(logout());
   }, [dispatch]);
 
-  // Search query değişimi - önceki isteği iptal et ve loading başlat
   const handleSearchQueryChange = useCallback(
     (query: string) => {
-      // Önceki arama isteğini hemen iptal et
       if (searchRequestRef.current) {
         searchRequestRef.current.abort();
         searchRequestRef.current = null;
@@ -126,7 +114,6 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
 
       setSearchQuery(query);
 
-      // Arama başladığında hemen loading göster
       if (query.trim()) {
         setIsSearching(true);
         setSearchLoading(true);
@@ -139,17 +126,14 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     [handleRefresh],
   );
 
-  // Error handling callback
   const handleErrorClose = useCallback(() => {
     dispatch(clearError());
   }, [dispatch]);
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <Header title="Yükler" showBackButton onBackPress={handleBackPress} />
 
-      {/* Search Bar */}
       <View style={styles.searchContainer}>
         <SearchBar
           placeholder="Arayın.."
@@ -159,7 +143,6 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
         />
       </View>
 
-      {/* Shipment List with Skeleton Loading */}
       <ShipmentList
         shipments={shipments || []}
         isLoading={isLoading}
@@ -169,7 +152,6 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
         onShipmentPress={handleShipmentPress}
       />
 
-      {/* Error Message */}
       <ErrorBox
         message={error || ''}
         visible={!!error}

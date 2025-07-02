@@ -9,9 +9,7 @@ export const createInputStyles = (
   disabled: boolean = false,
   isFocused: boolean = false,
 ) => {
-  // Supress unused variable warning - variant may be used in future
   void variant;
-  // Size styles
   const sizeStyles = {
     small: {
       paddingHorizontal: spacing.md,
@@ -33,7 +31,6 @@ export const createInputStyles = (
     },
   };
 
-  // Border color logic
   const getBorderColor = () => {
     if (hasError) return colors.error[500];
     if (disabled) return colors.neutral[300];
@@ -41,7 +38,6 @@ export const createInputStyles = (
     return colors.neutral[200];
   };
 
-  // Background color logic
   const getBackgroundColor = () => {
     if (disabled) return colors.neutral[100];
     return colors.neutral[50];

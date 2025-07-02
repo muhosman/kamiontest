@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing } from '../../../theme';
+import { colors, globalStyles, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,11 +7,7 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     padding: spacing.lg,
     marginBottom: spacing.sm,
-    shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4,
+    ...globalStyles.shadowMd,
   },
   header: {
     flexDirection: 'row',

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Icon, Text } from '../../atoms';
 import { styles } from './Header.styles';
 import type { HeaderProps } from './Header.types';
+import { colors } from '../../../theme';
 
 export const Header: React.FC<HeaderProps> = React.memo(
   ({ title, showBackButton = false, onBackPress, rightElement, style }) => {
@@ -16,7 +17,14 @@ export const Header: React.FC<HeaderProps> = React.memo(
           <View style={styles.spacer} />
         )}
 
-        <Text style={styles.title}>{title}</Text>
+        <Text
+          variant="h5"
+          align="center"
+          color={colors.text.primary}
+          style={styles.title}
+        >
+          {title}
+        </Text>
 
         {rightElement || <View style={styles.spacer} />}
       </View>

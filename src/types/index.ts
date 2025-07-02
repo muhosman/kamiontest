@@ -1,4 +1,3 @@
-// Auth types
 export type {
   LoginRequest,
   LoginResponse,
@@ -10,7 +9,6 @@ export type {
   LoginFormErrors,
 } from './auth.types';
 
-// Shipment types
 export type {
   Shipment,
   ShipmentState,
@@ -20,7 +18,6 @@ export type {
 
 export { ShipmentStatus, VehicleType } from './shipment.types';
 
-// API types
 export type {
   ApiResponse,
   ApiError,
@@ -34,7 +31,6 @@ export type {
 
 export { HttpMethod, HttpStatusCode, API_ENDPOINTS } from './api.types';
 
-// Navigation types
 export type {
   RootStackParamList,
   AuthStackParamList,

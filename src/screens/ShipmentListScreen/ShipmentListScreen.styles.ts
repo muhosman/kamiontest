@@ -159,13 +159,13 @@ export const styles = StyleSheet.create({
   errorSlash: {
     color: colors.white,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: fonts.weight.bold,
   },
   errorBannerText: {
     flex: 1,
     color: '#721C24',
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: fonts.weight.medium,
   },
   closeButton: {
     justifyContent: 'center',

@@ -1,23 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { shipmentApi } from '../../services/api';
-import type { ShipmentState, GetShipmentsRequest } from '../../types';
+import type { ShipmentState, GetShipmentsRequest, Shipment } from '../../types';
 
-// Initial state
 const initialState: ShipmentState = {
   shipments: [],
   isLoading: false,
   error: null,
 };
 
-// Async thunks
-export const fetchShipmentsAsync = createAsyncThunk(
+export const fetchShipmentsAsync = createAsyncThunk<
+  Shipment[],
+  GetShipmentsRequest | undefined
+>(
   'shipments/fetchShipments',
   async (params: GetShipmentsRequest | undefined, { rejectWithValue }) => {
     try {
-      const response = await shipmentApi.getShipments(params);
+      const response = await shipmentApi.getShipments();
 
       if (response.success && response.data) {
-        return response.data;
+        return response.data as unknown as Shipment[];
       } else {
         console.error('❌ Redux: API başarısız response:', response.message);
         return rejectWithValue(response.message || 'Yükler yüklenemedi');
@@ -33,14 +34,14 @@ export const fetchShipmentsAsync = createAsyncThunk(
   },
 );
 
-export const searchShipmentsAsync = createAsyncThunk(
+export const searchShipmentsAsync = createAsyncThunk<Shipment[], string>(
   'shipments/searchShipments',
   async (searchId: string, { rejectWithValue }) => {
     try {
       const response = await shipmentApi.searchShipments(searchId);
 
       if (response.success && response.data) {
-        return response.data;
+        return response.data as unknown as Shipment[];
       } else {
         console.error(
           '❌ Redux: Search API başarısız response:',
@@ -57,7 +58,6 @@ export const searchShipmentsAsync = createAsyncThunk(
   },
 );
 
-// Shipment slice
 const shipmentSlice = createSlice({
   name: 'shipments',
   initialState,
@@ -72,7 +72,6 @@ const shipmentSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    // Fetch shipments
     builder
       .addCase(fetchShipmentsAsync.pending, state => {
         state.isLoading = true;
@@ -89,7 +88,6 @@ const shipmentSlice = createSlice({
         state.error = action.payload as string;
       });
 
-    // Search shipments
     builder
       .addCase(searchShipmentsAsync.pending, state => {
         state.isLoading = true;
@@ -108,8 +106,6 @@ const shipmentSlice = createSlice({
   },
 });
 
-// Export actions
 export const { clearError, resetShipments } = shipmentSlice.actions;
 
-// Export reducer
 export default shipmentSlice.reducer;

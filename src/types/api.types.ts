@@ -1,4 +1,3 @@
-// Base API Response
 export interface ApiResponse<T = any> {
   data: T;
   success: boolean;
@@ -7,7 +6,6 @@ export interface ApiResponse<T = any> {
   code?: number;
 }
 
-// API Error Response
 export interface ApiError {
   message: string;
   code?: number;
@@ -15,7 +13,6 @@ export interface ApiError {
   stack?: string;
 }
 
-// Pagination
 export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   pagination: {
     currentPage: number;
@@ -27,7 +24,6 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   };
 }
 
-// HTTP Methods
 export enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
@@ -36,7 +32,6 @@ export enum HttpMethod {
   DELETE = 'DELETE',
 }
 
-// Request Configuration
 export interface RequestConfig {
   method: HttpMethod;
   url: string;
@@ -47,7 +42,6 @@ export interface RequestConfig {
   withCredentials?: boolean;
 }
 
-// Base API Service Interface
 export interface ApiService {
   get<T>(url: string, params?: Record<string, any>): Promise<ApiResponse<T>>;
   post<T>(url: string, data?: any): Promise<ApiResponse<T>>;
@@ -56,29 +50,25 @@ export interface ApiService {
   delete<T>(url: string): Promise<ApiResponse<T>>;
 }
 
-// Loading States
 export interface LoadingState {
   isLoading: boolean;
   error: string | null;
 }
 
-// Generic async state
 export interface AsyncState<T> extends LoadingState {
   data: T | null;
 }
 
-// API Endpoints
 export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: '/api/admin/login',
   },
   SHIPMENTS: {
-    LIST: '/api/admin/shipment', // Hem listeleme hem de arama için
+    LIST: '/api/admin/shipment',
   },
   SHIPMENTS_SEARCH: (id: string) => `/api/admin/shipment?filter[id]=${id}`,
 } as const;
 
-// HTTP Status Codes
 export enum HttpStatusCode {
   OK = 200,
   CREATED = 201,

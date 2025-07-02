@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing } from '../../../theme';
+import { spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   list: {
@@ -16,18 +16,9 @@ export const styles = StyleSheet.create({
     paddingVertical: spacing['4xl'],
   },
   emptyTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text.primary,
-    textAlign: 'center',
     marginBottom: spacing.xs,
   },
-  emptySubtitle: {
-    fontSize: 14,
-    color: colors.text.secondary,
-    textAlign: 'center',
-    lineHeight: 20,
-  },
+
   loadingContainer: {
     position: 'absolute',
     top: 0,
@@ -37,10 +28,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.9)',
-  },
-  loadingText: {
-    marginTop: spacing.sm,
-    fontSize: 14,
-    color: colors.text.secondary,
   },
 });

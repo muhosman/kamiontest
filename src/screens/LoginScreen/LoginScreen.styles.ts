@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, typography, fonts } from '../../theme';
+import { colors, spacing } from '../../theme';
 
 export const styles = StyleSheet.create({
   scrollContainer: {
@@ -31,12 +31,6 @@ export const styles = StyleSheet.create({
   logoImage: {
     width: 100,
     height: 100,
-  },
-  logoText: {
-    ...typography.h2,
-    color: colors.white,
-    fontFamily: fonts.family.heavy,
-    letterSpacing: 2,
   },
   title: {
     marginBottom: spacing.md,

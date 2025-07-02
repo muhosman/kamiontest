@@ -5,9 +5,6 @@ export interface ValidationResult {
   error?: string;
 }
 
-/**
- * Validate email address
- */
 export const validateEmail = (email: string): ValidationResult => {
   if (!email || email.trim().length === 0) {
     return {
@@ -40,9 +37,6 @@ export const validateEmail = (email: string): ValidationResult => {
   return { isValid: true };
 };
 
-/**
- * Validate password
- */
 export const validatePassword = (password: string): ValidationResult => {
   if (!password || password.trim().length === 0) {
     return {
@@ -68,9 +62,6 @@ export const validatePassword = (password: string): ValidationResult => {
   return { isValid: true };
 };
 
-/**
- * Validate search query
- */
 export const validateSearchQuery = (query: string): ValidationResult => {
   if (!query || query.trim().length === 0) {
     return { isValid: true }; // Empty search is valid
@@ -93,9 +84,6 @@ export const validateSearchQuery = (query: string): ValidationResult => {
   return { isValid: true };
 };
 
-/**
- * Validate required field
- */
 export const validateRequired = (
   value: string,
   fieldName: string,
@@ -110,9 +98,6 @@ export const validateRequired = (
   return { isValid: true };
 };
 
-/**
- * Validate minimum length
- */
 export const validateMinLength = (
   value: string,
   minLength: number,
@@ -128,9 +113,6 @@ export const validateMinLength = (
   return { isValid: true };
 };
 
-/**
- * Validate maximum length
- */
 export const validateMaxLength = (
   value: string,
   maxLength: number,
@@ -146,18 +128,13 @@ export const validateMaxLength = (
   return { isValid: true };
 };
 
-/**
- * Validate phone number (Turkish format)
- */
 export const validatePhone = (phone: string): ValidationResult => {
   if (!phone || phone.trim().length === 0) {
-    return { isValid: true }; // Phone is optional in most cases
+    return { isValid: true };
   }
 
-  // Remove all non-digit characters
   const cleanPhone = phone.replace(/\D/g, '');
 
-  // Turkish phone number patterns
   const patterns = [
     /^90\d{10}$/, // +90XXXXXXXXXX
     /^0\d{10}$/, // 0XXXXXXXXXX
@@ -176,9 +153,6 @@ export const validatePhone = (phone: string): ValidationResult => {
   return { isValid: true };
 };
 
-/**
- * Validate login form
- */
 export const validateLoginForm = (email: string, password: string) => {
   const emailResult = validateEmail(email);
   const passwordResult = validatePassword(password);
@@ -190,9 +164,6 @@ export const validateLoginForm = (email: string, password: string) => {
   };
 };
 
-/**
- * Validate shipment ID
- */
 export const validateShipmentId = (id: string): ValidationResult => {
   if (!id || id.trim().length === 0) {
     return {
@@ -201,7 +172,6 @@ export const validateShipmentId = (id: string): ValidationResult => {
     };
   }
 
-  // Check if it's a valid number or string format
   const isNumeric = /^\d+$/.test(id.trim());
   const isValidString = /^[a-zA-Z0-9-_]+$/.test(id.trim());
 

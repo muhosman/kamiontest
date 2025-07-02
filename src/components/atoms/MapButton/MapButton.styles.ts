@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, typography } from '../../../theme';
+import { colors, fonts, spacing, typography } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     ...typography.button,
     marginLeft: spacing.md,
     color: colors.background.primary,
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
     letterSpacing: 1.25,
   },
   textDisabled: {

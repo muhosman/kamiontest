@@ -4,10 +4,10 @@ import { Text } from '../../atoms';
 import { LocationInfo } from '../LocationInfo';
 import { styles } from './ShipmentCard.styles';
 import type { ShipmentCardProps } from './ShipmentCard.types';
+import { colors } from '../../../theme';
 
 export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
   ({ shipment, onPress, style }) => {
-    // 🚀 PERFORMANCE: Memoized address calculations
     const addressInfo = useMemo(
       () => ({
         departureCity:
@@ -27,7 +27,6 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
       ],
     );
 
-    // 🚀 PERFORMANCE: Memoized date formatting
     const formattedDate = useMemo(() => {
       const formatDate = (timestamp: number) => {
         try {
@@ -45,7 +44,6 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
       return formatDate(shipment.pick_up_date || shipment.created_at);
     }, [shipment.pick_up_date, shipment.created_at]);
 
-    // 🚀 PERFORMANCE: Memoized price calculation
     const priceInfo = useMemo(() => {
       const shipperPrice = shipment.price?.shipper?.freight_price || '0';
       const priceNumber = parseFloat(shipperPrice);
@@ -83,17 +81,38 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
         onPress={handlePress}
         activeOpacity={0.7}
       >
-        {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.shipmentNumber}>{shipment.id}</Text>
+          <Text
+            variant="body1"
+            color={colors.text.primary}
+            style={styles.shipmentNumber}
+          >
+            {shipment.id}
+          </Text>
           <View style={styles.headerRight}>
             <View style={styles.headerRightDate}>
-              <Text style={styles.dateText}>{formattedDate}</Text>
+              <Text
+                variant="caption"
+                color={colors.third[700]}
+                style={styles.dateText}
+              >
+                {formattedDate}
+              </Text>
             </View>
             <View style={styles.headerRightPrice}>
-              <Text style={styles.priceText}>{priceInfo.displayText}</Text>
+              <Text
+                variant="caption"
+                color={colors.primary[900]}
+                style={styles.priceText}
+              >
+                {priceInfo.displayText}
+              </Text>
               {priceInfo.priceNumber > 0 && (
-                <Text style={styles.priceTextWithCurrency}>
+                <Text
+                  variant="caption"
+                  color={colors.primary[900]}
+                  style={styles.priceTextWithCurrency}
+                >
                   {priceInfo.currency}+KDV
                 </Text>
               )}
@@ -101,7 +120,6 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
           </View>
         </View>
 
-        {/* Location Info */}
         <LocationInfo
           departureCity={addressInfo.departureCity}
           departureDistrict={addressInfo.departureDistrict}

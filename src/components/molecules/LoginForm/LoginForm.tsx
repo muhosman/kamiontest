@@ -24,7 +24,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     password: '',
   });
 
-  // Update form data when initial values change
   useEffect(() => {
     if (initialValues) {
       setFormData(prev => ({
@@ -40,7 +39,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       [field]: value,
     }));
 
-    // Clear local error when user starts typing
     if (localErrors[field]) {
       setLocalErrors(prev => ({
         ...prev,
@@ -50,7 +48,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   };
 
   const handleSubmit = () => {
-    // Validate form
     const validation = validateLoginForm(formData.email, formData.password);
 
     if (!validation.isValid) {
@@ -61,17 +58,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       return;
     }
 
-    // Clear local errors
     setLocalErrors({
       email: '',
       password: '',
     });
 
-    // Submit form
     onSubmit(formData);
   };
 
-  // Combine local errors with external errors
   const getFieldError = (field: keyof LoginFormData) => {
     return localErrors[field] || errors?.[field] || '';
   };
@@ -112,7 +106,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         />
       </View>
 
-      {/* General error message */}
       {errors?.general && (
         <Text variant="caption" color={colors.error[500]}>
           {errors.general}

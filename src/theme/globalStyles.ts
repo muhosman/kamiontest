@@ -5,7 +5,6 @@ import { dimensions } from './dimensions';
 import { typography } from './fonts';
 
 export const globalStyles = StyleSheet.create({
-  // Container styles
   container: {
     flex: 1,
     backgroundColor: colors.background.primary,
@@ -21,7 +20,6 @@ export const globalStyles = StyleSheet.create({
     padding: spacing.container,
   },
 
-  // Flex utilities
   flex1: {
     flex: 1,
   },
@@ -51,7 +49,6 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  // Text styles
   textCenter: {
     textAlign: 'center',
   },
@@ -64,7 +61,6 @@ export const globalStyles = StyleSheet.create({
     textAlign: 'right',
   },
 
-  // Card styles
   card: {
     backgroundColor: colors.white,
     borderRadius: dimensions.borderRadius.lg,
@@ -79,7 +75,6 @@ export const globalStyles = StyleSheet.create({
     elevation: 3,
   },
 
-  // Button base style
   buttonBase: {
     borderRadius: dimensions.borderRadius.md,
     padding: spacing.button,
@@ -88,7 +83,6 @@ export const globalStyles = StyleSheet.create({
     minHeight: dimensions.button.medium,
   },
 
-  // Input base style
   inputBase: {
     borderWidth: dimensions.borderWidth.base,
     borderColor: colors.border.light,
@@ -100,14 +94,12 @@ export const globalStyles = StyleSheet.create({
     minHeight: dimensions.input,
   },
 
-  // Divider
   divider: {
     height: dimensions.borderWidth.base,
     backgroundColor: colors.border.light,
     marginVertical: spacing.md,
   },
 
-  // Shadow styles
   shadowSm: {
     shadowColor: colors.black,
     shadowOffset: {

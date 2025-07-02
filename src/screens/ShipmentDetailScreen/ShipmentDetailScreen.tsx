@@ -5,63 +5,46 @@ import { Header } from '../../components/molecules';
 import { ShipmentDetail } from '../../components/organisms';
 import { styles } from './ShipmentDetailScreen.styles';
 
-export const ShipmentDetailScreen: React.FC<ShipmentDetailScreenProps> = ({
-  navigation,
-  route,
-}) => {
-  const { shipment } = route.params;
+export const ShipmentDetailScreen: React.FC<ShipmentDetailScreenProps> =
+  React.memo(({ navigation, route }) => {
+    const { shipment } = route.params;
 
-  console.log('');
-  console.log('='.repeat(50));
-  console.log('📱 SHIPMENT DETAIL SCREEN BAŞLATILDI');
-  console.log('='.repeat(50));
-  console.log('📅 Zaman:', new Date().toLocaleString('tr-TR'));
-  console.log('🆔 Shipment ID:', shipment.id);
-  console.log('');
+    const handleBackPress = useCallback(() => {
+      navigation.goBack();
+    }, [navigation]);
 
-  const handleBackPress = useCallback(() => {
-    console.log('🔙 Geri butonuna basıldı');
-    navigation.goBack();
-  }, [navigation]);
+    const handleGetDirections = useCallback(() => {
+      const departureCoords = '41.0082,28.9784';
+      const arrivalCoords = '41.0082,28.9784';
+      const url = `https://www.google.com/maps/dir/${departureCoords}/${arrivalCoords}`;
 
-  const handleGetDirections = useCallback(() => {
-    console.log('🗺️ Yol tarifi alma işlemi başlatıldı');
-    // Google Maps ile yol tarifi alma
-    const departureCoords = '41.0082,28.9784'; // Örnek koordinatlar
-    const arrivalCoords = '41.0082,28.9784'; // Örnek koordinatlar
-    const url = `https://www.google.com/maps/dir/${departureCoords}/${arrivalCoords}`;
+      Linking.openURL(url).catch(() => {
+        Alert.alert('Hata', 'Harita uygulaması açılamadı');
+      });
+    }, []);
 
-    Linking.openURL(url).catch(() => {
-      Alert.alert('Hata', 'Harita uygulaması açılamadı');
-    });
-  }, []);
+    const handleCallDriver = useCallback(() => {
+      const phoneNumber = shipment.creator?.phone || '';
+      if (phoneNumber) {
+        Linking.openURL(`tel:${phoneNumber}`);
+      }
+    }, [shipment.creator?.phone]);
 
-  const handleCallDriver = useCallback(() => {
-    console.log('📞 Sürücü arama işlemi başlatıldı');
-    const phoneNumber = shipment.creator?.phone || '';
-    if (phoneNumber) {
-      console.log('📞 Aranacak numara:', phoneNumber);
-      Linking.openURL(`tel:${phoneNumber}`);
-    } else {
-      console.log('❌ Telefon numarası bulunamadı');
-    }
-  }, [shipment.creator?.phone]);
-
-  return (
-    <View style={styles.container}>
-      <Header
-        title={`SEFER NO : ${shipment.id}`}
-        showBackButton
-        onBackPress={handleBackPress}
-      />
-
-      <View style={styles.content}>
-        <ShipmentDetail
-          shipment={shipment}
-          onGetDirections={handleGetDirections}
-          onCallDriver={handleCallDriver}
+    return (
+      <View style={styles.container}>
+        <Header
+          title={`SEFER NO : ${shipment.id}`}
+          showBackButton
+          onBackPress={handleBackPress}
         />
+
+        <View style={styles.content}>
+          <ShipmentDetail
+            shipment={shipment}
+            onGetDirections={handleGetDirections}
+            onCallDriver={handleCallDriver}
+          />
+        </View>
       </View>
-    </View>
-  );
-};
+    );
+  });

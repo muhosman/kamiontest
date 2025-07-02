@@ -22,7 +22,6 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
   }) => {
     const [isFocused, setIsFocused] = useState(false);
 
-    // 🚀 PERFORMANCE: Memoized handlers
     const handleFocus = useCallback(() => {
       setIsFocused(true);
     }, []);
@@ -40,12 +39,10 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
     return (
       <View style={[styles.container, isFocused && styles.focused, style]}>
         <View style={styles.inputContainer}>
-          {/* Search Icon */}
           <View style={styles.iconContainer}>
             <Icon name="search" size={24} color={colors.primary[900]} />
           </View>
 
-          {/* Text Input */}
           <TextInput
             style={styles.input}
             placeholder={placeholder}
@@ -61,7 +58,6 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
             returnKeyType="search"
           />
 
-          {/* Loading or Clear Button */}
           <View style={styles.rightIconContainer}>
             {isLoading ? (
               <View style={styles.loadingContainer}>

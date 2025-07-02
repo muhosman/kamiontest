@@ -1,17 +1,12 @@
 import { ShipmentStatus } from '../types';
 
-/**
- * Format a date string or Unix timestamp to display format
- */
 export const formatDate = (dateInput: string | number): string => {
   try {
     let date: Date;
 
     if (typeof dateInput === 'number') {
-      // Unix timestamp - saniye cinsinden geliyorsa milisaniyeye çevir
       date = new Date(dateInput * 1000);
     } else {
-      // String format
       const numericValue = parseInt(dateInput);
       if (!isNaN(numericValue) && dateInput.length === 10) {
         // 10 haneli sayı Unix timestamp olabilir
@@ -31,18 +26,13 @@ export const formatDate = (dateInput: string | number): string => {
   }
 };
 
-/**
- * Format a date string or Unix timestamp to display format with time
- */
 export const formatDateTime = (dateInput: string | number): string => {
   try {
     let date: Date;
 
     if (typeof dateInput === 'number') {
-      // Unix timestamp - saniye cinsinden geliyorsa milisaniyeye çevir
       date = new Date(dateInput * 1000);
     } else {
-      // String format
       const numericValue = parseInt(dateInput);
       if (!isNaN(numericValue) && dateInput.length === 10) {
         // 10 haneli sayı Unix timestamp olabilir
@@ -64,9 +54,6 @@ export const formatDateTime = (dateInput: string | number): string => {
   }
 };
 
-/**
- * Get relative time string (e.g., "2 saat önce")
- */
 export const getRelativeTime = (dateString: string): string => {
   try {
     const date = new Date(dateString);
@@ -89,9 +76,6 @@ export const getRelativeTime = (dateString: string): string => {
   }
 };
 
-/**
- * Get status color based on shipment status
- */
 export const getStatusColor = (status: ShipmentStatus): string => {
   switch (status) {
     case ShipmentStatus.PENDING:
@@ -113,9 +97,6 @@ export const getStatusColor = (status: ShipmentStatus): string => {
   }
 };
 
-/**
- * Get status text in Turkish
- */
 export const getStatusText = (status: ShipmentStatus): string => {
   switch (status) {
     case ShipmentStatus.PENDING:
@@ -139,9 +120,6 @@ export const getStatusText = (status: ShipmentStatus): string => {
   }
 };
 
-/**
- * Generate initials from a name
- */
 export const getInitials = (name: string): string => {
   return name
     .split(' ')
@@ -150,9 +128,6 @@ export const getInitials = (name: string): string => {
     .substring(0, 2);
 };
 
-/**
- * Format currency value
- */
 export const formatCurrency = (
   amount: number,
   currency: string = 'TL',
@@ -160,9 +135,6 @@ export const formatCurrency = (
   return `${amount.toLocaleString('tr-TR')} ${currency}`;
 };
 
-/**
- * Format weight value
- */
 export const formatWeight = (weight: number): string => {
   if (weight >= 1000) {
     return `${(weight / 1000).toFixed(1)} ton`;
@@ -170,9 +142,6 @@ export const formatWeight = (weight: number): string => {
   return `${weight} kg`;
 };
 
-/**
- * Truncate text to specified length
- */
 export const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) {
     return text;
@@ -180,9 +149,6 @@ export const truncateText = (text: string, maxLength: number): string => {
   return `${text.substring(0, maxLength)}...`;
 };
 
-/**
- * Capitalize first letter of each word
- */
 export const capitalizeWords = (text: string): string => {
   return text
     .toLowerCase()
@@ -191,38 +157,23 @@ export const capitalizeWords = (text: string): string => {
     .join(' ');
 };
 
-/**
- * Sleep function for delays
- */
 export const sleep = (ms: number): Promise<void> => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
-/**
- * Check if string is valid email
- */
 export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 };
 
-/**
- * Generate unique ID
- */
 export const generateId = (): string => {
   return Math.random().toString(36).substr(2, 9);
 };
 
-/**
- * Deep clone an object
- */
 export const deepClone = <T>(obj: T): T => {
   return JSON.parse(JSON.stringify(obj));
 };
 
-/**
- * Check if object is empty
- */
 export const isEmpty = (obj: any): boolean => {
   if (obj === null || obj === undefined) return true;
   if (Array.isArray(obj)) return obj.length === 0;

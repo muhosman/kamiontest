@@ -1,7 +1,6 @@
 export { default as authReducer } from './authSlice';
 export { default as shipmentReducer } from './shipmentSlice';
 
-// Export async thunks
 export {
   loginAsync,
   logoutAsync,

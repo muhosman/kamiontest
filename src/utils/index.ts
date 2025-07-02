@@ -1,4 +1,3 @@
-// Constants
 export {
   API_CONFIG,
   DEFAULT_CREDENTIALS,
@@ -10,7 +9,6 @@ export {
   ERROR_MESSAGES,
 } from './constants';
 
-// Helper functions
 export {
   formatDate,
   formatDateTime,
@@ -29,7 +27,6 @@ export {
   isEmpty,
 } from './helpers';
 
-// Validators
 export {
   validateEmail,
   validatePassword,

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, dimensions, spacing, typography } from '../../../theme';
+import { colors, dimensions, fonts, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -42,38 +42,14 @@ export const styles = StyleSheet.create({
     marginRight: spacing.md,
   },
   avatarText: {
-    ...typography.h4,
-    color: colors.primary[600],
-    fontWeight: '600',
+    fontWeight: fonts.weight.semibold,
   },
   driverInfo: {
     flex: 1,
   },
   driverName: {
-    ...typography.caption,
-    color: colors.neutral[900],
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
     marginBottom: spacing.xs,
-  },
-  driverPhone: {
-    ...typography.caption,
-    color: colors.neutral[800],
-  },
-  callButton: {
-    backgroundColor: colors.success[500],
-    borderRadius: 20,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  callIcon: {
-    marginRight: spacing.xs,
-  },
-  callText: {
-    ...typography.button,
-    color: colors.background.primary,
-    fontWeight: '600',
   },
 
   walletInfo: {
@@ -89,11 +65,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  walletIcon: {
-    width: 24,
-    height: 24,
-    tintColor: colors.primary[800],
-  },
+
   driverAmountContainer: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -101,13 +73,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   driverAmountLabel: {
-    ...typography.caption,
-    color: colors.neutral[500],
-    fontWeight: '600',
+    fontWeight: fonts.weight.semibold,
   },
   driverAmount: {
-    ...typography.caption,
-    color: colors.neutral[800],
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
   },
 });

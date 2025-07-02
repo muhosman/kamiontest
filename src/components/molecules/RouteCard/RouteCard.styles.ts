@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, spacing, typography } from '../../../theme';
+import { colors, fonts, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -30,23 +30,19 @@ export const styles = StyleSheet.create({
     marginRight: spacing.sm,
   },
   sectionTitle: {
-    ...typography.caption,
-    color: colors.text.primary,
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
     letterSpacing: 1.25,
   },
   stepCityContainer: {
     flexDirection: 'row',
     gap: 2,
   },
-
   departureIcon: {
     backgroundColor: colors.primary[800],
   },
   arrivalIcon: {
     backgroundColor: colors.error[500],
   },
-
   stepContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -54,50 +50,15 @@ export const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     paddingLeft: spacing.lg,
   },
-  stepNumber: {
-    ...typography.caption,
-    color: colors.neutral[500],
-  },
-  stepLocation: {
-    ...typography.caption,
-    color: colors.neutral[500],
-  },
-  stepCity: {
-    ...typography.caption,
-    color: colors.neutral[500],
-  },
   stepDeparture: {
-    ...typography.caption,
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
     letterSpacing: 1.125,
-    color: colors.primary[800],
-    textAlign: 'right',
-  },
-  subStepDeparture: {
-    ...typography.caption,
-    fontWeight: '800',
-    letterSpacing: 1.125,
-    color: colors.primary[400],
-    textAlign: 'right',
   },
   stepArrival: {
-    ...typography.caption,
-    fontWeight: '800',
+    fontWeight: fonts.weight.extrabold,
     letterSpacing: 1.125,
-    color: colors.black,
-    textAlign: 'right',
   },
   arrivalContainer: {
     paddingLeft: spacing.lg,
-  },
-  arrivalLocation: {
-    ...typography.body1,
-    color: colors.text.primary,
-    fontWeight: '500',
-  },
-  arrivalCity: {
-    ...typography.caption,
-    color: colors.text.secondary,
-    marginTop: spacing.xs,
   },
 });

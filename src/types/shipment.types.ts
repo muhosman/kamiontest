@@ -1,4 +1,3 @@
-// Address entity
 export interface Address {
   id: number;
   name: string;
@@ -31,7 +30,6 @@ export interface Address {
   created_at: number;
 }
 
-// Shipper entity
 export interface Shipper {
   id: number;
   name: string;
@@ -46,7 +44,6 @@ export interface Shipper {
   created_at: number;
 }
 
-// Currency entity
 export interface Currency {
   id: number;
   name: string;
@@ -55,7 +52,6 @@ export interface Currency {
   updated_at?: string;
 }
 
-// Price entity
 export interface ShipmentPrice {
   shipper: {
     id: number;
@@ -115,7 +111,6 @@ export interface ShipmentPrice {
   };
 }
 
-// Latest Status entity
 export interface LatestStatus {
   id: number;
   type: number;
@@ -123,7 +118,6 @@ export interface LatestStatus {
   created_at: number;
 }
 
-// Shipment Detail entity
 export interface ShipmentDetail {
   id: number;
   shipment_id: number;
@@ -154,13 +148,11 @@ export interface ShipmentDetail {
   is_insured: boolean;
 }
 
-// Time Interval entity
 export interface TimeInterval {
   start: string;
   end: string;
 }
 
-// Creator entity
 export interface Creator {
   id: number;
   tckn: string | null;
@@ -180,7 +172,6 @@ export interface Creator {
   updated_at: number;
 }
 
-// Main Shipment entity (updated for real API)
 export interface Shipment {
   id: number;
   customer_order_number: string | null;
@@ -225,7 +216,6 @@ export interface Shipment {
   boosted: boolean;
 }
 
-// Shipment Status Enum
 export enum ShipmentStatus {
   PENDING = 1,
   CONFIRMED = 2,
@@ -237,7 +227,6 @@ export enum ShipmentStatus {
   DELAYED = 8,
 }
 
-// Vehicle Type Enum
 export enum VehicleType {
   TIR = 1,
   KAMYON = 2,
@@ -245,17 +234,13 @@ export enum VehicleType {
   MINIBUS = 4,
 }
 
-// Redux State
 export interface ShipmentState {
   shipments: Shipment[];
   isLoading: boolean;
   error: string | null;
 }
 
-// API Request/Response types
-export interface GetShipmentsRequest {
-  // Boş interface - gelecekteki parametreler için
-}
+export interface GetShipmentsRequest {}
 
 export interface GetShipmentsResponse {
   data: Shipment[];

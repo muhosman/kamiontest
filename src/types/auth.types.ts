@@ -38,7 +38,6 @@ export interface RefreshTokenResponse {
   expiresIn?: number;
 }
 
-// Form validation types
 export interface LoginFormData {
   email: string;
   password: string;

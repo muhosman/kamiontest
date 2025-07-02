@@ -20,7 +20,6 @@ class BaseApiService {
   }
 
   private setupInterceptors() {
-    // Request interceptor - Add auth token
     this.instance.interceptors.request.use(
       async config => {
         const token = await AsyncStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
@@ -30,12 +29,10 @@ class BaseApiService {
         return config;
       },
       error => {
-        console.error('🔐 Request Interceptor Error:', error);
         return Promise.reject(error);
       },
     );
 
-    // Response interceptor - Handle common errors
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
         return response;
@@ -44,13 +41,11 @@ class BaseApiService {
         const status = error.response?.status;
         switch (status) {
           case 401:
-            // Unauthorized - Clear token and redirect to login
             await AsyncStorage.multiRemove([
               STORAGE_KEYS.AUTH_TOKEN,
               STORAGE_KEYS.REFRESH_TOKEN,
               STORAGE_KEYS.USER_DATA,
             ]);
-            // You can dispatch a logout action here if needed
             break;
           case 403:
             error.message = ERROR_MESSAGES.FORBIDDEN;
@@ -80,7 +75,6 @@ class BaseApiService {
       const response = await this.instance.get<ApiResponse<T>>(url, { params });
       return response.data;
     } catch (error) {
-      console.error('🌐 API GET Error:', error);
       throw this.handleError(error);
     }
   }
@@ -90,64 +84,30 @@ class BaseApiService {
       const response = await this.instance.post<ApiResponse<T>>(url, data);
       return response.data;
     } catch (error) {
-      console.error('API POST Error:', error);
-      throw this.handleError(error);
-    }
-  }
-
-  async put<T>(url: string, data?: any): Promise<ApiResponse<T>> {
-    try {
-      const response = await this.instance.put<ApiResponse<T>>(url, data);
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async patch<T>(url: string, data?: any): Promise<ApiResponse<T>> {
-    try {
-      const response = await this.instance.patch<ApiResponse<T>>(url, data);
-      return response.data;
-    } catch (error) {
-      throw this.handleError(error);
-    }
-  }
-
-  async delete<T>(url: string): Promise<ApiResponse<T>> {
-    try {
-      const response = await this.instance.delete<ApiResponse<T>>(url);
-      return response.data;
-    } catch (error) {
       throw this.handleError(error);
     }
   }
 
   private handleError(error: any): Error {
     if (error.response) {
-      // Server responded with error status
       const errorMessage = error.response.data?.message || error.message;
       return new Error(errorMessage);
     } else if (error.request) {
-      // Network error
       return new Error(ERROR_MESSAGES.NETWORK);
     } else {
-      // Something else happened
       return new Error(error.message || 'Bilinmeyen hata');
     }
   }
 
-  // Update auth token
   async setAuthToken(token: string) {
     await AsyncStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, token);
     this.instance.defaults.headers.Authorization = `Bearer ${token}`;
   }
 
-  // Clear auth token
   async clearAuthToken() {
     await AsyncStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
     delete this.instance.defaults.headers.Authorization;
   }
 }
 
-// Create and export singleton instance
 export const baseApi = new BaseApiService();

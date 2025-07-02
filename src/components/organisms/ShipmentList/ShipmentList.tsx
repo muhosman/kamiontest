@@ -27,10 +27,15 @@ export const ShipmentList: React.FC<ShipmentListProps> = ({
 
   const renderEmptyComponent = () => (
     <View style={styles.emptyContainer}>
-      <Text style={styles.emptyTitle}>
+      <Text
+        variant="h5"
+        color={colors.text.primary}
+        align="center"
+        style={styles.emptyTitle}
+      >
         {searchQuery ? 'Arama sonucu bulunamadı' : 'Henüz sevkiyat yok'}
       </Text>
-      <Text style={styles.emptySubtitle}>
+      <Text variant="body2" color={colors.text.secondary} align="center">
         {searchQuery
           ? 'Farklı bir ID ile arama yapmayı deneyin'
           : 'Yeni sevkiyatlar eklendiğinde burada görünecek'}
@@ -38,13 +43,11 @@ export const ShipmentList: React.FC<ShipmentListProps> = ({
     </View>
   );
 
-  // Loading durumunda skeleton data'sı oluştur
   const skeletonData =
     isLoading || refreshing
       ? Array.from({ length: 5 }, (_, index) => ({ id: index }))
       : [];
 
-  // İlk yükleme sırasında skeleton'ları göster
   if (isLoading && shipments.length === 0) {
     return (
       <FlashList
@@ -60,7 +63,6 @@ export const ShipmentList: React.FC<ShipmentListProps> = ({
     );
   }
 
-  // Refresh sırasında skeleton'ları göster
   if (refreshing) {
     return (
       <FlashList

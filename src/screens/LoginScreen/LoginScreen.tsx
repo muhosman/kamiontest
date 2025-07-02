@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   View,
   SafeAreaView,
@@ -25,7 +25,6 @@ export const LoginScreen: React.FC = () => {
     dispatch(loginAsync(data));
   };
 
-  // Error handling callback
   const handleErrorClose = () => {
     dispatch(clearAuthError());
   };
@@ -43,7 +42,6 @@ export const LoginScreen: React.FC = () => {
           showsVerticalScrollIndicator={false}
         >
           <View style={styles.formContainer}>
-            {/* Header */}
             <View style={styles.header}>
               <View style={styles.logoContainer}>
                 <Image
@@ -71,7 +69,7 @@ export const LoginScreen: React.FC = () => {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      {/* Error Message */}
+
       <ErrorBox
         message={error || ''}
         visible={!!error}

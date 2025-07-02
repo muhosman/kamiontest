@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, dimensions, spacing, typography } from '../../../theme';
+import { colors, dimensions, spacing } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,14 +21,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: spacing.sm,
   },
-  iconText: {
-    ...typography.caption,
-    color: colors.background.primary,
-    fontWeight: '600',
-  },
   messageText: {
-    ...typography.body2,
-    color: colors.error[700],
     flex: 1,
     marginRight: spacing.sm,
   },
@@ -39,10 +32,5 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.error[50],
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  closeButtonText: {
-    ...typography.caption,
-    color: colors.error[700],
-    fontWeight: '600',
   },
 });
