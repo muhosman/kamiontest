@@ -1,27 +1,57 @@
 import { ShipmentStatus } from '../types';
 
 /**
- * Format a date string to display format
+ * Format a date string or Unix timestamp to display format
  */
-export const formatDate = (dateString: string): string => {
+export const formatDate = (dateInput: string | number): string => {
   try {
-    const date = new Date(dateString);
+    let date: Date;
+
+    if (typeof dateInput === 'number') {
+      // Unix timestamp - saniye cinsinden geliyorsa milisaniyeye çevir
+      date = new Date(dateInput * 1000);
+    } else {
+      // String format
+      const numericValue = parseInt(dateInput);
+      if (!isNaN(numericValue) && dateInput.length === 10) {
+        // 10 haneli sayı Unix timestamp olabilir
+        date = new Date(numericValue * 1000);
+      } else {
+        date = new Date(dateInput);
+      }
+    }
+
     return date.toLocaleDateString('tr-TR', {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
     });
   } catch (error) {
-    return dateString;
+    return String(dateInput);
   }
 };
 
 /**
- * Format a date string to display format with time
+ * Format a date string or Unix timestamp to display format with time
  */
-export const formatDateTime = (dateString: string): string => {
+export const formatDateTime = (dateInput: string | number): string => {
   try {
-    const date = new Date(dateString);
+    let date: Date;
+
+    if (typeof dateInput === 'number') {
+      // Unix timestamp - saniye cinsinden geliyorsa milisaniyeye çevir
+      date = new Date(dateInput * 1000);
+    } else {
+      // String format
+      const numericValue = parseInt(dateInput);
+      if (!isNaN(numericValue) && dateInput.length === 10) {
+        // 10 haneli sayı Unix timestamp olabilir
+        date = new Date(numericValue * 1000);
+      } else {
+        date = new Date(dateInput);
+      }
+    }
+
     return date.toLocaleDateString('tr-TR', {
       day: '2-digit',
       month: '2-digit',
@@ -30,7 +60,7 @@ export const formatDateTime = (dateString: string): string => {
       minute: '2-digit',
     });
   } catch (error) {
-    return dateString;
+    return String(dateInput);
   }
 };
 

@@ -7,6 +7,14 @@ const iconMap = {
   mail: require('../../../../assets/images/icons/mail.png'),
   lock: require('../../../../assets/images/icons/lock.png'),
   unlock: require('../../../../assets/images/icons/unlock.png'),
+  back: require('../../../../assets/images/icons/back.png'),
+  user: require('../../../../assets/images/icons/user.png'),
+  wallet: require('../../../../assets/images/icons/wallet.png'),
+  distance: require('../../../../assets/images/icons/distance.png'),
+  box: require('../../../../assets/images/icons/box.png'),
+  search: require('../../../../assets/images/icons/search.png'),
+  close: require('../../../../assets/images/icons/close.png'),
+  warning: require('../../../../assets/images/icons/warning.png'),
 };
 
 export const Icon: React.FC<IconProps> = ({

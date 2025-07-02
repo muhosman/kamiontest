@@ -4,3 +4,6 @@ export * from './Text';
 export * from './Badge';
 export * from './Icon';
 export * from './Skeleton';
+export * from './MapButton';
+export * from './Divider';
+export * from './ErrorBox';

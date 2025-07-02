@@ -107,7 +107,7 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
           departureDistrict={addressInfo.departureDistrict}
           arrivalCity={addressInfo.arrivalCity}
           arrivalDistrict={addressInfo.arrivalDistrict}
-          stopCount={3}
+          stopCount={1}
         />
       </TouchableOpacity>
     );

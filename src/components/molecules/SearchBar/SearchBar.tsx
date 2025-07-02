@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { colors } from '../../../theme';
-import { Text } from '../../atoms';
+import { Icon, Text } from '../../atoms';
 import { styles } from './SearchBar.styles';
 import type { SearchBarProps } from './SearchBar.types';
 
@@ -42,7 +42,7 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
         <View style={styles.inputContainer}>
           {/* Search Icon */}
           <View style={styles.iconContainer}>
-            <Text style={styles.searchIcon}>🔍</Text>
+            <Icon name="search" size={24} color={colors.primary[900]} />
           </View>
 
           {/* Text Input */}

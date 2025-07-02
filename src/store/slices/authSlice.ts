@@ -117,6 +117,17 @@ const authSlice = createSlice({
         state.user = { ...state.user, ...action.payload };
       }
     },
+    logout: state => {
+      // Basit logout - sadece state'i temizle
+      state.user = null;
+      state.token = null;
+      state.isAuthenticated = false;
+      state.error = null;
+      state.isLoading = false;
+
+      // Storage'ı da temizle (async olmadan)
+      storageService.clearAuthData().catch(console.error);
+    },
   },
   extraReducers: builder => {
     // Login
@@ -186,7 +197,7 @@ const authSlice = createSlice({
 });
 
 // Export actions
-export const { clearError, setUser, updateUser } = authSlice.actions;
+export const { clearError, setUser, updateUser, logout } = authSlice.actions;
 
 // Export reducer
 export default authSlice.reducer;

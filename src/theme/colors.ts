@@ -1,7 +1,7 @@
 export const colors = {
   // Primary colors (Kamion mavi tonları)
   primary: {
-    50: '#E3F2FD',
+    50: '#F0F8FF', // Daha açık mavi
     100: '#BBDEFB',
     200: '#90CAF9',
     300: '#64B5F6',
@@ -24,6 +24,19 @@ export const colors = {
     700: '#7B1FA2',
     800: '#6A1B9A',
     900: '#4A148C',
+  },
+
+  third: {
+    50: '#E8EAF6',
+    100: '#C5CAE9',
+    200: '#9FA8DA',
+    300: '#7986CB',
+    400: '#5C6BC0',
+    500: '#3F51B5', // Ana navy
+    600: '#3949AB',
+    700: '#303F9F',
+    800: '#283593',
+    900: '#1A237E',
   },
   // Neutral colors
   neutral: {

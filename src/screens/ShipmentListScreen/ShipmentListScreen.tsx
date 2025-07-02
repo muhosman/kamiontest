@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-} from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { View, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
@@ -13,9 +7,10 @@ import {
   searchShipmentsAsync,
   clearError,
 } from '../../store/slices/shipmentSlice';
+import { logout } from '../../store/slices/authSlice';
 import { ShipmentListScreenProps } from '../../types/navigation.types';
 import { Shipment } from '../../types/shipment.types';
-import { Button, Text } from '../../components/atoms';
+import { ErrorBox } from '../../components/atoms';
 import { Header, SearchBar } from '../../components/molecules';
 import { ShipmentList } from '../../components/organisms';
 import { useDebounce } from '../../hooks';
@@ -40,22 +35,10 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
   // Arama isteklerini iptal etmek için dispatch promise ref'i
   const searchRequestRef = useRef<any>(null);
 
-  useEffect(() => {
-    console.log('📦 State Güncellendi:');
-    console.log('🔍 Shipments:', shipments);
-    console.log('- Search Query:', searchQuery);
-    console.log('- Is Loading:', isLoading);
-    console.log('- Search Loading:', searchLoading);
-    console.log('- Is Searching:', isSearching);
-    console.log('- Refreshing:', refreshing);
-    console.log('- Error:', error);
-  }, [searchQuery, isLoading, searchLoading, isSearching, refreshing, error]);
-
   // Component unmount cleanup
   useEffect(() => {
     return () => {
       if (searchRequestRef.current) {
-        console.log('🧹 Component unmount: Arama isteği iptal ediliyor...');
         searchRequestRef.current.abort();
       }
     };
@@ -63,7 +46,6 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
 
   // İlk yüklemede sevkiyatları getir
   useEffect(() => {
-    console.log('🚛 ShipmentListScreen: İlk yükleme başlatılıyor...');
     dispatch(fetchShipmentsAsync() as any);
   }, [dispatch]);
 
@@ -77,16 +59,11 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
   useEffect(() => {
     // Önceki arama isteğini iptal et
     if (searchRequestRef.current) {
-      console.log('🚫 Önceki arama isteği iptal ediliyor...');
       searchRequestRef.current.abort();
       searchRequestRef.current = null;
     }
 
-    if (debouncedSearchQuery.trim()) {
-      console.log(
-        '🔍 Debounced arama başlatılıyor:',
-        debouncedSearchQuery.trim(),
-      );
+    if (debouncedSearchQuery.trim() && isSearching) {
       setSearchLoading(true);
 
       // Yeni search request'i başlat
@@ -97,37 +74,29 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
       searchRequestRef.current.finally(() => {
         // İstek tamamlandığında loading'i kapat ve ref'i temizle
         searchRequestRef.current = null;
+        setSearchLoading(false);
       });
-    } else if (isSearching) {
+    } else if (!isSearching) {
       // Arama temizlendiğinde tüm listeyi yeniden getir
-      console.log('🔍 Arama temizlendi, tüm liste getiriliyor');
       setIsSearching(false);
       setSearchLoading(false);
       dispatch(fetchShipmentsAsync() as any);
     }
-  }, [debouncedSearchQuery]);
+  }, [debouncedSearchQuery, dispatch, isSearching]);
 
   // 🚀 PERFORMANCE: Memoized handler functions
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
     try {
       if (searchQuery.trim()) {
-        console.log(
-          '🔄 Arama ile yenileme API çağrısı başlatılıyor...',
-          searchQuery,
-        );
         await dispatch(searchShipmentsAsync(searchQuery.trim()) as any);
-        console.log('✅ Arama ile yenileme başarılı...');
       } else {
-        console.log('🔄 Normal yenileme API çağrısı başlatılıyor...');
         await dispatch(fetchShipmentsAsync() as any);
-        console.log('✅ Normal yenileme başarılı...');
       }
     } catch (error) {
       console.error('❌ Yenileme hatası:', error);
       Alert.alert('Hata', 'Sevkiyatlar yenilenirken bir hata oluştu');
     } finally {
-      console.log('🔄 Pull-to-refresh tamamlandı');
       setRefreshing(false);
     }
   }, [dispatch, searchQuery]);
@@ -142,20 +111,15 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
   );
 
   const handleBackPress = useCallback(() => {
-    navigation.goBack();
-  }, [navigation]);
+    console.log('🚫 Logout işlemi başlatılıyor');
+    dispatch(logout());
+  }, [dispatch]);
 
   // Search query değişimi - önceki isteği iptal et ve loading başlat
   const handleSearchQueryChange = useCallback(
     (query: string) => {
-      console.log('🔍 Search query değişti:', query);
-      console.log(
-        '🔍 Search query searchRequestRef:',
-        searchRequestRef.current,
-      );
       // Önceki arama isteğini hemen iptal et
       if (searchRequestRef.current) {
-        console.log('🚫 Query değişti, önceki arama iptal ediliyor...');
         searchRequestRef.current.abort();
         searchRequestRef.current = null;
       }
@@ -164,45 +128,21 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
 
       // Arama başladığında hemen loading göster
       if (query.trim()) {
+        setIsSearching(true);
         setSearchLoading(true);
       } else {
         setSearchLoading(false);
         setIsSearching(false);
-        console.log('🔄 Normal yenileme API çağrısı başlatılıyor...');
         handleRefresh();
       }
     },
     [handleRefresh],
   );
 
-  // 🚀 PERFORMANCE: Memoized error component
-  const errorComponent = useMemo(() => {
-    if (!error) return null;
-
-    return (
-      <View style={styles.errorBanner}>
-        {/* Error Icon */}
-        <View style={styles.errorIconCircle}>
-          <Text style={styles.errorSlash}>⊘</Text>
-        </View>
-
-        {/* Error Text */}
-        <Text style={styles.errorBannerText}>Error: {error}</Text>
-
-        {/* Close Button */}
-        <Button
-          title="X"
-          variant="ghost"
-          size="large"
-          textStyle={styles.closeButtonText}
-          onPress={() => {
-            dispatch(clearError());
-          }}
-          style={styles.closeButton}
-        />
-      </View>
-    );
-  }, [error, dispatch]);
+  // Error handling callback
+  const handleErrorClose = useCallback(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   return (
     <View style={styles.container}>
@@ -215,22 +155,26 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
           placeholder="Arayın.."
           value={searchQuery}
           onChangeText={handleSearchQueryChange}
-          isLoading={searchLoading || isLoading}
+          isLoading={searchLoading}
         />
       </View>
 
       {/* Shipment List with Skeleton Loading */}
       <ShipmentList
         shipments={shipments || []}
-        isLoading={isLoading || searchLoading}
-        refreshing={refreshing || isLoading || searchLoading}
+        isLoading={isLoading}
+        refreshing={refreshing || isLoading}
         searchQuery={searchQuery}
         onRefresh={handleRefresh}
         onShipmentPress={handleShipmentPress}
       />
 
       {/* Error Message */}
-      {errorComponent}
+      <ErrorBox
+        message={error || ''}
+        visible={!!error}
+        onClose={handleErrorClose}
+      />
     </View>
   );
 };

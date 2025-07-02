@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, dimensions, fonts, spacing } from '../../../theme';
+import { colors, dimensions, fonts, spacing, typography } from '../../../theme';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,31 +12,36 @@ export const styles = StyleSheet.create({
   routeInfo: {
     flex: 1,
   },
-  routeItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: spacing.xs,
-  },
+
   routeLabel: {
-    fontSize: fonts.size.xs,
+    ...typography.caption,
     color: colors.text.secondary,
     fontWeight: fonts.weight.medium,
-    width: 40,
+    marginRight: spacing.sm,
     marginLeft: spacing.sm,
   },
+  routeItem: {
+    flexDirection: 'row',
+  },
   routeAddress: {
-    fontSize: fonts.size.sm,
+    ...typography.caption,
     color: colors.text.primary,
     fontWeight: fonts.weight.medium,
     flex: 1,
   },
+  iconContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'flex-start',
+  },
   dottedLine: {
-    width: 2,
-    height: 20,
-    marginLeft: 5,
+    paddingVertical: spacing.sm,
+    width: 1,
+    marginLeft: 6,
     marginRight: spacing.sm,
     borderLeftWidth: 1,
-    borderLeftColor: colors.neutral[700],
+    borderLeftColor: colors.primary[900],
     borderStyle: 'dotted',
   },
   stopCountContainer: {},
@@ -47,7 +52,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.neutral[100],
   },
   stopCountText: {
-    fontSize: fonts.size.xs,
+    ...typography.caption,
     color: colors.black,
     fontWeight: fonts.weight.medium,
   },

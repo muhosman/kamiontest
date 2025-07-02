@@ -4,7 +4,7 @@ import { colors, spacing, fonts } from '../../theme';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'colors.neutral[50]',
+    backgroundColor: colors.neutral[200],
   },
   header: {
     flexDirection: 'row',
@@ -30,9 +30,6 @@ export const styles = StyleSheet.create({
   },
   searchContainer: {
     padding: spacing.lg,
-    backgroundColor: colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border.light,
   },
   list: {
     flex: 1,

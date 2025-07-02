@@ -19,10 +19,12 @@ export const LocationInfo: React.FC<LocationInfoProps> = React.memo(
         <View style={styles.routeInfo}>
           {/* Departure */}
           <View style={styles.routeItem}>
-            <Icon name="departure" size={12} color={colors.primary[800]} />
-            <Text style={styles.routeLabel}>ÇIKIŞ</Text>
+            <View style={styles.iconContainer}>
+              <Icon name="departure" size={12} color={colors.primary[900]} />
+              <Text style={styles.routeLabel}>ÇIKIŞ</Text>
+            </View>
             <Text style={styles.routeAddress}>
-              {departureCity}, {departureDistrict} Türkiye
+              {departureCity}, {departureDistrict}
             </Text>
           </View>
 
@@ -31,10 +33,12 @@ export const LocationInfo: React.FC<LocationInfoProps> = React.memo(
 
           {/* Arrival */}
           <View style={styles.routeItem}>
-            <Icon name="arrival" size={12} color={colors.primary[800]} />
-            <Text style={styles.routeLabel}>VARIŞ</Text>
+            <View style={styles.iconContainer}>
+              <Icon name="arrival" size={12} color={colors.primary[900]} />
+              <Text style={styles.routeLabel}>VARIŞ</Text>
+            </View>
             <Text style={styles.routeAddress}>
-              {arrivalCity}, {arrivalDistrict} Türkiye
+              {arrivalCity}, {arrivalDistrict}
             </Text>
           </View>
         </View>

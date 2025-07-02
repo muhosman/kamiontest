@@ -7,8 +7,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.white,
     borderRadius: dimensions.borderRadius.lg,
-    borderWidth: dimensions.borderWidth.base,
-    borderColor: colors.border.light,
     paddingHorizontal: spacing.md,
     minHeight: dimensions.searchBar,
   },

@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   headerRightDate: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.secondary[50],
+    backgroundColor: colors.third[50],
     paddingVertical: spacing.xs,
     paddingHorizontal: spacing.sm,
     borderRadius: dimensions.borderRadius['2xl'],
@@ -48,18 +48,18 @@ export const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: fonts.size.xs,
-    color: colors.secondary[400],
+    color: colors.third[700],
     fontWeight: fonts.weight.bold,
     marginRight: spacing.xs,
   },
   priceText: {
     fontSize: fonts.size.xs,
-    color: colors.primary[600],
+    color: colors.primary[900],
     fontWeight: fonts.weight.bold,
   },
   priceTextWithCurrency: {
     fontSize: fonts.size.xs,
-    color: colors.primary[500],
+    color: colors.primary[900],
     fontWeight: fonts.weight.medium,
   },
 });

@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginForm } from '../../components/molecules';
-import { Text } from '../../components/atoms';
+import { Text, ErrorBox } from '../../components/atoms';
 import { loginAsync, clearAuthError } from '../../store/slices';
 import { globalStyles, colors } from '../../theme';
 import { styles } from './LoginScreen.styles';
@@ -21,19 +21,14 @@ export const LoginScreen: React.FC = () => {
 
   const { isLoading, error } = useSelector((state: RootState) => state.auth);
 
-  // Clear error when component mounts
-  useEffect(() => {
-    if (error) {
-      dispatch(clearAuthError());
-    }
-  }, [dispatch, error]);
-
   const handleLogin = async (data: LoginFormData) => {
     dispatch(loginAsync(data));
   };
 
-  // Convert error to form errors format
-  const formErrors = error ? { general: error } : undefined;
+  // Error handling callback
+  const handleErrorClose = () => {
+    dispatch(clearAuthError());
+  };
 
   return (
     <SafeAreaView style={globalStyles.container}>
@@ -71,14 +66,17 @@ export const LoginScreen: React.FC = () => {
                 Lütfen email ve şifrenizi girerek giriş yapınız.
               </Text>
             </View>
-            <LoginForm
-              onSubmit={handleLogin}
-              isLoading={isLoading}
-              errors={formErrors}
-            />
+
+            <LoginForm onSubmit={handleLogin} isLoading={isLoading} />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
+      {/* Error Message */}
+      <ErrorBox
+        message={error || ''}
+        visible={!!error}
+        onClose={handleErrorClose}
+      />
     </SafeAreaView>
   );
 };
