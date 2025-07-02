@@ -13,14 +13,7 @@ export type {
 // Shipment types
 export type {
   Shipment,
-  Location,
-  CargoDetails,
-  VehicleDetails,
-  DriverDetails,
-  CustomerInfo,
   ShipmentState,
-  ShipmentFilters,
-  PaginationInfo,
   GetShipmentsRequest,
   GetShipmentsResponse,
 } from './shipment.types';
@@ -41,15 +34,15 @@ export type {
 
 export { HttpMethod, HttpStatusCode, API_ENDPOINTS } from './api.types';
 
-// Navigation types (will be uncommented after installing packages)
-// export type {
-//   RootStackParamList,
-//   AuthStackParamList,
-//   MainStackParamList,
-//   SplashScreenProps,
-//   LoginScreenProps,
-//   ShipmentListScreenProps,
-//   ShipmentDetailScreenProps,
-//   NavigationState,
-//   ScreenOptions,
-// } from './navigation.types';
+// Navigation types
+export type {
+  RootStackParamList,
+  AuthStackParamList,
+  MainStackParamList,
+  SplashScreenProps,
+  LoginScreenProps,
+  ShipmentListScreenProps,
+  ShipmentDetailScreenProps,
+  NavigationState,
+  ScreenOptions,
+} from './navigation.types';

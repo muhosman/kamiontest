@@ -17,6 +17,7 @@ export const loginAsync = createAsyncThunk(
   'auth/login',
   async (credentials: LoginFormData, { rejectWithValue }) => {
     try {
+      console.log('Login credentials:', credentials);
       const response = await authApi.login(credentials);
 
       // Debug: API response'unu logla

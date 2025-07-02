@@ -77,8 +77,6 @@ export const ShipmentCard: React.FC<ShipmentCardProps> = React.memo(
       onPress?.(shipment);
     };
 
-    console.log('🚀 ~ ShipmentCard ~ shipment:', shipment);
-
     return (
       <TouchableOpacity
         style={[styles.container, style]}

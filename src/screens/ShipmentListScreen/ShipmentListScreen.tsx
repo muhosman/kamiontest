@@ -1,10 +1,17 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from 'react';
 import { View, Alert } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import {
   fetchShipmentsAsync,
   searchShipmentsAsync,
+  clearError,
 } from '../../store/slices/shipmentSlice';
 import { ShipmentListScreenProps } from '../../types/navigation.types';
 import { Shipment } from '../../types/shipment.types';
@@ -17,83 +24,105 @@ import { styles } from './ShipmentListScreen.styles';
 export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
   navigation,
 }) => {
-  console.log('');
-  console.log('='.repeat(50));
-  console.log('🖥️ SHIPMENT LIST SCREEN BAŞLATILDI');
-  console.log('='.repeat(50));
-  console.log('📅 Zaman:', new Date().toLocaleString('tr-TR'));
-  console.log('');
-
   const dispatch = useDispatch();
   const { shipments, isLoading, error } = useSelector(
     (state: RootState) => state.shipments,
   );
 
-  // Redux state değişikliklerini logla
-  useEffect(() => {
-    console.log('📦 Shipments State Güncellendi:');
-    console.log('- Sevkiyat sayısı:', shipments?.length);
-    console.log('- Loading durumu:', isLoading);
-    console.log('- Hata:', error);
-    console.log('- Sevkiyat verileri:', shipments);
-  }, [shipments, isLoading, error]);
-
-  console.log('shipments', shipments);
   const [searchQuery, setSearchQuery] = useState('');
   const [refreshing, setRefreshing] = useState(false);
-  const [searchLoading, setSearchLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
 
   // 500ms debounce - sadece bu kullanılacak
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
+  // Arama isteklerini iptal etmek için dispatch promise ref'i
+  const searchRequestRef = useRef<any>(null);
+
+  useEffect(() => {
+    console.log('📦 State Güncellendi:');
+    console.log('🔍 Shipments:', shipments);
+    console.log('- Search Query:', searchQuery);
+    console.log('- Is Loading:', isLoading);
+    console.log('- Search Loading:', searchLoading);
+    console.log('- Is Searching:', isSearching);
+    console.log('- Refreshing:', refreshing);
+    console.log('- Error:', error);
+  }, [searchQuery, isLoading, searchLoading, isSearching, refreshing, error]);
+
   // Component unmount cleanup
   useEffect(() => {
     return () => {
-      console.log('🖥️ ShipmentListScreen component unmount edildi');
+      if (searchRequestRef.current) {
+        console.log('🧹 Component unmount: Arama isteği iptal ediliyor...');
+        searchRequestRef.current.abort();
+      }
     };
   }, []);
 
   // İlk yüklemede sevkiyatları getir
   useEffect(() => {
     console.log('🚛 ShipmentListScreen: İlk yükleme başlatılıyor...');
-    console.log('📊 Parametre:', { page: 1, limit: 20 });
-    dispatch(fetchShipmentsAsync({ page: 1, limit: 20 }) as any);
+    dispatch(fetchShipmentsAsync() as any);
   }, [dispatch]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      setSearchLoading(false);
+    }
+  }, [isLoading]);
 
   // Sadece debounced search - tek API çağrısı
   useEffect(() => {
+    // Önceki arama isteğini iptal et
+    if (searchRequestRef.current) {
+      console.log('🚫 Önceki arama isteği iptal ediliyor...');
+      searchRequestRef.current.abort();
+      searchRequestRef.current = null;
+    }
+
     if (debouncedSearchQuery.trim()) {
       console.log(
         '🔍 Debounced arama başlatılıyor:',
         debouncedSearchQuery.trim(),
       );
       setSearchLoading(true);
-      setIsSearching(true);
 
-      dispatch(
+      // Yeni search request'i başlat
+      searchRequestRef.current = dispatch(
         searchShipmentsAsync(debouncedSearchQuery.trim()) as any,
-      ).finally(() => {
-        setSearchLoading(false);
+      );
+
+      searchRequestRef.current.finally(() => {
+        // İstek tamamlandığında loading'i kapat ve ref'i temizle
+        searchRequestRef.current = null;
       });
     } else if (isSearching) {
       // Arama temizlendiğinde tüm listeyi yeniden getir
       console.log('🔍 Arama temizlendi, tüm liste getiriliyor');
       setIsSearching(false);
-      dispatch(fetchShipmentsAsync({ page: 1, limit: 20 }) as any);
+      setSearchLoading(false);
+      dispatch(fetchShipmentsAsync() as any);
     }
-  }, [debouncedSearchQuery, dispatch, isSearching]);
+  }, [debouncedSearchQuery]);
 
   // 🚀 PERFORMANCE: Memoized handler functions
   const handleRefresh = useCallback(async () => {
-    console.log('🔄 Pull-to-refresh başlatıldı');
     setRefreshing(true);
     try {
-      console.log('🔄 Yenileme API çağrısı başlatılıyor...');
-      const result = await dispatch(
-        fetchShipmentsAsync({ page: 1, limit: 20 }) as any,
-      );
-      console.log('✅ Yenileme başarılı:', result);
+      if (searchQuery.trim()) {
+        console.log(
+          '🔄 Arama ile yenileme API çağrısı başlatılıyor...',
+          searchQuery,
+        );
+        await dispatch(searchShipmentsAsync(searchQuery.trim()) as any);
+        console.log('✅ Arama ile yenileme başarılı...');
+      } else {
+        console.log('🔄 Normal yenileme API çağrısı başlatılıyor...');
+        await dispatch(fetchShipmentsAsync() as any);
+        console.log('✅ Normal yenileme başarılı...');
+      }
     } catch (error) {
       console.error('❌ Yenileme hatası:', error);
       Alert.alert('Hata', 'Sevkiyatlar yenilenirken bir hata oluştu');
@@ -101,12 +130,12 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
       console.log('🔄 Pull-to-refresh tamamlandı');
       setRefreshing(false);
     }
-  }, [dispatch]);
+  }, [dispatch, searchQuery]);
 
   const handleShipmentPress = useCallback(
     (shipment: Shipment) => {
       navigation.navigate('ShipmentDetail', {
-        shipmentId: shipment.id.toString(),
+        shipment: shipment,
       });
     },
     [navigation],
@@ -116,50 +145,64 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
     navigation.goBack();
   }, [navigation]);
 
-  // Sadece manuel arama (Enter tuşu ile)
-  const handleSearch = useCallback(
+  // Search query değişimi - önceki isteği iptal et ve loading başlat
+  const handleSearchQueryChange = useCallback(
     (query: string) => {
-      console.log('🔍 Manuel arama (Enter) tetiklendi:', query);
-      if (query.trim()) {
-        console.log('🔍 Manuel arama başlatılıyor:', query.trim());
-        setSearchLoading(true);
-        setIsSearching(true);
+      console.log('🔍 Search query değişti:', query);
+      console.log(
+        '🔍 Search query searchRequestRef:',
+        searchRequestRef.current,
+      );
+      // Önceki arama isteğini hemen iptal et
+      if (searchRequestRef.current) {
+        console.log('🚫 Query değişti, önceki arama iptal ediliyor...');
+        searchRequestRef.current.abort();
+        searchRequestRef.current = null;
+      }
 
-        dispatch(searchShipmentsAsync(query.trim()) as any).finally(() => {
-          setSearchLoading(false);
-        });
+      setSearchQuery(query);
+
+      // Arama başladığında hemen loading göster
+      if (query.trim()) {
+        setSearchLoading(true);
+      } else {
+        setSearchLoading(false);
+        setIsSearching(false);
+        console.log('🔄 Normal yenileme API çağrısı başlatılıyor...');
+        handleRefresh();
       }
     },
-    [dispatch],
+    [handleRefresh],
   );
-
-  // Search query değişimi - sadece state güncellemesi
-  const handleSearchQueryChange = useCallback((query: string) => {
-    console.log('🔍 Search query değişti:', query);
-    setSearchQuery(query);
-  }, []);
-
-  // 🚀 PERFORMANCE: Memoized retry function
-  const handleRetry = useCallback(() => {
-    dispatch(fetchShipmentsAsync({ page: 1, limit: 20 }) as any);
-  }, [dispatch]);
 
   // 🚀 PERFORMANCE: Memoized error component
   const errorComponent = useMemo(() => {
     if (!error) return null;
 
     return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>{error}</Text>
+      <View style={styles.errorBanner}>
+        {/* Error Icon */}
+        <View style={styles.errorIconCircle}>
+          <Text style={styles.errorSlash}>⊘</Text>
+        </View>
+
+        {/* Error Text */}
+        <Text style={styles.errorBannerText}>Error: {error}</Text>
+
+        {/* Close Button */}
         <Button
-          title="Tekrar Dene"
-          variant="outline"
-          size="small"
-          onPress={handleRetry}
+          title="X"
+          variant="ghost"
+          size="large"
+          textStyle={styles.closeButtonText}
+          onPress={() => {
+            dispatch(clearError());
+          }}
+          style={styles.closeButton}
         />
       </View>
     );
-  }, [error, handleRetry]);
+  }, [error, dispatch]);
 
   return (
     <View style={styles.container}>
@@ -172,16 +215,15 @@ export const ShipmentListScreen: React.FC<ShipmentListScreenProps> = ({
           placeholder="Arayın.."
           value={searchQuery}
           onChangeText={handleSearchQueryChange}
-          onSearch={handleSearch}
-          isLoading={searchLoading}
+          isLoading={searchLoading || isLoading}
         />
       </View>
 
       {/* Shipment List with Skeleton Loading */}
       <ShipmentList
-        shipments={shipments}
-        isLoading={isLoading}
-        refreshing={refreshing}
+        shipments={shipments || []}
+        isLoading={isLoading || searchLoading}
+        refreshing={refreshing || isLoading || searchLoading}
         searchQuery={searchQuery}
         onRefresh={handleRefresh}
         onShipmentPress={handleShipmentPress}

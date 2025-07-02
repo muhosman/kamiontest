@@ -23,20 +23,10 @@ class BaseApiService {
     // Request interceptor - Add auth token
     this.instance.interceptors.request.use(
       async config => {
-        console.log('🔐 Request Interceptor: Başlatıldı');
         const token = await AsyncStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
         if (token) {
-          console.log('🔐 Token bulundu, Authorization header ekleniyor');
           config.headers.Authorization = `Bearer ${token}`;
-        } else {
-          console.log('🔐 Token bulunamadı');
         }
-        console.log('🔐 Final request config:', {
-          url: config.url,
-          method: config.method,
-          headers: config.headers,
-          params: config.params,
-        });
         return config;
       },
       error => {
@@ -48,17 +38,9 @@ class BaseApiService {
     // Response interceptor - Handle common errors
     this.instance.interceptors.response.use(
       (response: AxiosResponse) => {
-        console.log(
-          '📥 Response Interceptor: Success response alındı',
-          response.data,
-        );
         return response;
       },
       async error => {
-        console.log(
-          '📥 Response Interceptor: Error response alındı',
-          error.response,
-        );
         const status = error.response?.status;
         switch (status) {
           case 401:
@@ -95,9 +77,7 @@ class BaseApiService {
     params?: Record<string, any>,
   ): Promise<ApiResponse<T>> {
     try {
-      console.log('🌐 API GET Request:', { url, params });
       const response = await this.instance.get<ApiResponse<T>>(url, { params });
-      console.log('🌐 API GET Response:', response.data);
       return response.data;
     } catch (error) {
       console.error('🌐 API GET Error:', error);
@@ -107,9 +87,7 @@ class BaseApiService {
 
   async post<T>(url: string, data?: any): Promise<ApiResponse<T>> {
     try {
-      console.log('API POST Request:', { url, data });
       const response = await this.instance.post<ApiResponse<T>>(url, data);
-      console.log('API POST Response:', response.data);
       return response.data;
     } catch (error) {
       console.error('API POST Error:', error);

@@ -15,7 +15,6 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
     placeholder = 'Arayın...',
     value,
     onChangeText,
-    onSearch,
     isLoading = false,
     autoFocus = false,
     disabled = false,
@@ -31,12 +30,6 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
     const handleBlur = useCallback(() => {
       setIsFocused(false);
     }, []);
-
-    const handleSubmitEditing = useCallback(() => {
-      if (value?.trim()) {
-        onSearch?.(value.trim());
-      }
-    }, [value, onSearch]);
 
     const handleClearPress = useCallback(() => {
       onChangeText('');
@@ -66,7 +59,6 @@ export const SearchBar: React.FC<SearchBarProps> = React.memo(
             autoCapitalize="none"
             autoCorrect={false}
             returnKeyType="search"
-            onSubmitEditing={handleSubmitEditing}
           />
 
           {/* Loading or Clear Button */}

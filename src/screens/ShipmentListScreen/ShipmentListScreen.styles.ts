@@ -136,4 +136,46 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: spacing.sm,
   },
+  // Error Banner Styles
+  errorBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F8D7DA',
+    borderColor: '#F5C6CB',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginVertical: spacing.md,
+    marginHorizontal: spacing.md,
+    marginTop: spacing.sm,
+  },
+  errorIconCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#DC3545',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: spacing.sm,
+  },
+  errorSlash: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  errorBannerText: {
+    flex: 1,
+    color: '#721C24',
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  closeButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  closeButtonText: {
+    color: colors.error[700],
+  },
 });

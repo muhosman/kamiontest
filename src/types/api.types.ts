@@ -71,16 +71,11 @@ export interface AsyncState<T> extends LoadingState {
 export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: '/api/admin/login',
-    REFRESH: '/api/auth/refresh',
-    LOGOUT: '/api/auth/logout',
   },
   SHIPMENTS: {
-    LIST: '/api/admin/shipment',
-    DETAIL: (id: string) => `/api/admin/shipment/${id}`,
-    CREATE: '/api/admin/shipment',
-    UPDATE: (id: string) => `/api/admin/shipment/${id}`,
-    DELETE: (id: string) => `/api/admin/shipment/${id}`,
+    LIST: '/api/admin/shipment', // Hem listeleme hem de arama için
   },
+  SHIPMENTS_SEARCH: (id: string) => `/api/admin/shipment?filter[id]=${id}`,
 } as const;
 
 // HTTP Status Codes

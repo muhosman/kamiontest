@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { MainStackParamList } from '../types/navigation.types';
-import { ShipmentListScreen } from '../screens';
+import { ShipmentListScreen, ShipmentDetailScreen } from '../screens';
 
 const Stack = createStackNavigator<MainStackParamList>();
 
@@ -14,7 +14,7 @@ export const MainNavigator: React.FC = () => {
       }}
     >
       <Stack.Screen name="ShipmentList" component={ShipmentListScreen} />
-      {/* ShipmentDetail eklenecek */}
+      <Stack.Screen name="ShipmentDetail" component={ShipmentDetailScreen} />
     </Stack.Navigator>
   );
 };

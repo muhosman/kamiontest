@@ -53,7 +53,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     // Validate form
     const validation = validateLoginForm(formData.email, formData.password);
 
-    console.log('formData', formData);
     if (!validation.isValid) {
       setLocalErrors({
         email: validation.email || '',

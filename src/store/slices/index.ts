@@ -13,14 +13,7 @@ export {
 
 export {
   fetchShipmentsAsync,
-  fetchShipmentByIdAsync,
   searchShipmentsAsync,
   clearError as clearShipmentError,
-  setSearchQuery,
-  clearSearchQuery,
-  setFilters,
-  clearFilters,
-  clearCurrentShipment,
-  setPagination,
   resetShipments,
 } from './shipmentSlice';

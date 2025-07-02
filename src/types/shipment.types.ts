@@ -248,47 +248,17 @@ export enum VehicleType {
 // Redux State
 export interface ShipmentState {
   shipments: Shipment[];
-  currentShipment: Shipment | null;
   isLoading: boolean;
   error: string | null;
-  searchQuery: string;
-  filters: ShipmentFilters;
-  pagination: PaginationInfo;
-}
-
-export interface ShipmentFilters {
-  status?: number[];
-  dateRange?: {
-    startDate: string;
-    endDate: string;
-  };
-  origin?: string;
-  destination?: string;
-  customerId?: string;
-  id?: string;
-  [key: string]: any;
-}
-
-export interface PaginationInfo {
-  currentPage: number;
-  totalPages: number;
-  totalItems: number;
-  itemsPerPage: number;
-  hasNextPage: boolean;
-  hasPreviousPage: boolean;
 }
 
 // API Request/Response types
 export interface GetShipmentsRequest {
-  page?: number;
-  limit?: number;
-  filter?: ShipmentFilters;
-  sort?: string;
+  // Boş interface - gelecekteki parametreler için
 }
 
 export interface GetShipmentsResponse {
   data: Shipment[];
-  pagination: PaginationInfo;
   success: boolean;
   message?: string;
 }

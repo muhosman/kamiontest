@@ -72,15 +72,6 @@ export const ShipmentList: React.FC<ShipmentListProps> = ({
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         scrollEnabled={true}
-        refreshControl={
-          onRefresh ? (
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={[colors.primary[500]]}
-            />
-          ) : undefined
-        }
       />
     );
   }

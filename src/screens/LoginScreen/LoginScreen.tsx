@@ -19,9 +19,7 @@ import type { LoginFormData } from '../../types';
 export const LoginScreen: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { isLoading, error, isAuthenticated } = useSelector(
-    (state: RootState) => state.auth,
-  );
+  const { isLoading, error } = useSelector((state: RootState) => state.auth);
 
   // Clear error when component mounts
   useEffect(() => {
@@ -30,26 +28,12 @@ export const LoginScreen: React.FC = () => {
     }
   }, [dispatch, error]);
 
-  // Debug: Auth state'ini logla
-  useEffect(() => {
-    console.log('Auth State:', { isLoading, error, isAuthenticated });
-  }, [isLoading, error, isAuthenticated]);
-
   const handleLogin = async (data: LoginFormData) => {
-    console.log('Login attempt with:', data);
     dispatch(loginAsync(data));
   };
 
   // Convert error to form errors format
   const formErrors = error ? { general: error } : undefined;
-
-  // Success durumunu handle et
-  useEffect(() => {
-    if (isAuthenticated) {
-      console.log('Login successful! User is authenticated.');
-      // TODO: Navigate to main screen
-    }
-  }, [isAuthenticated]);
 
   return (
     <SafeAreaView style={globalStyles.container}>

@@ -1,5 +1,6 @@
 import type { RouteProp } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
+import type { Shipment } from './shipment.types';
 
 // Root Stack Navigator
 export type RootStackParamList = {
@@ -17,7 +18,7 @@ export type AuthStackParamList = {
 export type MainStackParamList = {
   ShipmentList: undefined;
   ShipmentDetail: {
-    shipmentId: string;
+    shipment: Shipment;
   };
 };
 
