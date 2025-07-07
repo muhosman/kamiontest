@@ -6,32 +6,6 @@
 	objectVersion = 54;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		0C80B921A6F3F58F76C31292 /* libPods-kamiontest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-kamiontest.a */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		2AFB2EA26A674A85BF0E68A0 /* Axiforma Black Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D7E6DBD4E9A24759899A754E /* Axiforma Black Italic.otf */; };
-		7718D45A71FC44E6B33667F8 /* Axiforma Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 09E13CC92C974CF986B3632E /* Axiforma Black.otf */; };
-		E936A0664E1A485CBC172230 /* Axiforma Bold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = B60CFA73AA5B41F6B5656DE6 /* Axiforma Bold Italic.otf */; };
-		F49D69C8C3774E70BCF6D520 /* Axiforma Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D701790D7B341BBAEEA4798 /* Axiforma Bold.otf */; };
-		DFE55A8371664F04A8F93D44 /* Axiforma Book Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 11B47E1E14804717AE00327C /* Axiforma Book Italic.otf */; };
-		838E477B41B6467FA6EAC5E4 /* Axiforma Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = BC4993F3037D4537A46E2693 /* Axiforma Book.otf */; };
-		77CF03BFDF934691A16AB642 /* Axiforma ExtraBold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0C3EB392B7489894C890F1 /* Axiforma ExtraBold Italic.otf */; };
-		E819BE38F07E48A9965284D9 /* Axiforma ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D85F8EBBE4564DDEB6D5DECD /* Axiforma ExtraBold.otf */; };
-		319116E13B404E0C8AC6C92E /* Axiforma Heavy Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CCD2B93FC4141C4A9CA0EBE /* Axiforma Heavy Italic.otf */; };
-		94F965D82BF44E45B56B3BE0 /* Axiforma Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6227BA68C98E4C0CB4508DB8 /* Axiforma Heavy.otf */; };
-		02B8AC2C7FDC44A0AC1BE79B /* Axiforma Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = D0A63800212A46159B7B0095 /* Axiforma Italic.otf */; };
-		EF694881519F47DD838C1B03 /* Axiforma Light Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F556B94013D4244B3AFF7FA /* Axiforma Light Italic.otf */; };
-		DDDB0B4873A343F598D5CC14 /* Axiforma Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A759F2988004D428875575B /* Axiforma Light.otf */; };
-		D766199DB7214BFBA76BF0EA /* Axiforma Medium Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 057D7CC0CB854D17AB879F2F /* Axiforma Medium Italic.otf */; };
-		A92652C4687C46E590C63739 /* Axiforma Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = C94C5E051EA64D2BB3AC5AF0 /* Axiforma Medium.otf */; };
-		9930A5099BE447918259C903 /* Axiforma Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A0D45693031E4AA78BE96A4F /* Axiforma Regular.otf */; };
-		9C51785AA8EF406AAF20AB53 /* Axiforma SemiBold Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2359A9624F024929B146973A /* Axiforma SemiBold Italic.otf */; };
-		D8199E4F8FD24D25BB02D418 /* Axiforma SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC265D0EF484C56966ACBB8 /* Axiforma SemiBold.otf */; };
-		AD54231717E6410C84DB7EDE /* Axiforma Thin Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = BABC64BEFD99414B967D3CE6 /* Axiforma Thin Italic.otf */; };
-		53535E583AC0417B8D3C1372 /* Axiforma Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F7B62B948E544D981B0B319 /* Axiforma Thin.otf */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
@@ -42,40 +16,6 @@
 			remoteInfo = kamiontest;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* kamiontest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kamiontest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = kamiontest/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = kamiontest/Info.plist; sourceTree = "<group>"; };
-		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = kamiontest/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-kamiontest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamiontest.debug.xcconfig"; path = "Target Support Files/Pods-kamiontest/Pods-kamiontest.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-kamiontest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamiontest.release.xcconfig"; path = "Target Support Files/Pods-kamiontest/Pods-kamiontest.release.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-kamiontest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-kamiontest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = kamiontest/AppDelegate.swift; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = kamiontest/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		D7E6DBD4E9A24759899A754E /* Axiforma Black Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Black Italic.otf"; path = "../assets/fonts/Axiforma Black Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		09E13CC92C974CF986B3632E /* Axiforma Black.otf */ = {isa = PBXFileReference; name = "Axiforma Black.otf"; path = "../assets/fonts/Axiforma Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B60CFA73AA5B41F6B5656DE6 /* Axiforma Bold Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Bold Italic.otf"; path = "../assets/fonts/Axiforma Bold Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0D701790D7B341BBAEEA4798 /* Axiforma Bold.otf */ = {isa = PBXFileReference; name = "Axiforma Bold.otf"; path = "../assets/fonts/Axiforma Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		11B47E1E14804717AE00327C /* Axiforma Book Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Book Italic.otf"; path = "../assets/fonts/Axiforma Book Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BC4993F3037D4537A46E2693 /* Axiforma Book.otf */ = {isa = PBXFileReference; name = "Axiforma Book.otf"; path = "../assets/fonts/Axiforma Book.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8D0C3EB392B7489894C890F1 /* Axiforma ExtraBold Italic.otf */ = {isa = PBXFileReference; name = "Axiforma ExtraBold Italic.otf"; path = "../assets/fonts/Axiforma ExtraBold Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D85F8EBBE4564DDEB6D5DECD /* Axiforma ExtraBold.otf */ = {isa = PBXFileReference; name = "Axiforma ExtraBold.otf"; path = "../assets/fonts/Axiforma ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5CCD2B93FC4141C4A9CA0EBE /* Axiforma Heavy Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Heavy Italic.otf"; path = "../assets/fonts/Axiforma Heavy Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6227BA68C98E4C0CB4508DB8 /* Axiforma Heavy.otf */ = {isa = PBXFileReference; name = "Axiforma Heavy.otf"; path = "../assets/fonts/Axiforma Heavy.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D0A63800212A46159B7B0095 /* Axiforma Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Italic.otf"; path = "../assets/fonts/Axiforma Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7F556B94013D4244B3AFF7FA /* Axiforma Light Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Light Italic.otf"; path = "../assets/fonts/Axiforma Light Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0A759F2988004D428875575B /* Axiforma Light.otf */ = {isa = PBXFileReference; name = "Axiforma Light.otf"; path = "../assets/fonts/Axiforma Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		057D7CC0CB854D17AB879F2F /* Axiforma Medium Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Medium Italic.otf"; path = "../assets/fonts/Axiforma Medium Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C94C5E051EA64D2BB3AC5AF0 /* Axiforma Medium.otf */ = {isa = PBXFileReference; name = "Axiforma Medium.otf"; path = "../assets/fonts/Axiforma Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A0D45693031E4AA78BE96A4F /* Axiforma Regular.otf */ = {isa = PBXFileReference; name = "Axiforma Regular.otf"; path = "../assets/fonts/Axiforma Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2359A9624F024929B146973A /* Axiforma SemiBold Italic.otf */ = {isa = PBXFileReference; name = "Axiforma SemiBold Italic.otf"; path = "../assets/fonts/Axiforma SemiBold Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8FC265D0EF484C56966ACBB8 /* Axiforma SemiBold.otf */ = {isa = PBXFileReference; name = "Axiforma SemiBold.otf"; path = "../assets/fonts/Axiforma SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BABC64BEFD99414B967D3CE6 /* Axiforma Thin Italic.otf */ = {isa = PBXFileReference; name = "Axiforma Thin Italic.otf"; path = "../assets/fonts/Axiforma Thin Italic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5F7B62B948E544D981B0B319 /* Axiforma Thin.otf */ = {isa = PBXFileReference; name = "Axiforma Thin.otf"; path = "../assets/fonts/Axiforma Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-/* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
